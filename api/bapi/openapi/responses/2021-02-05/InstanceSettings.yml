@@ -1,0 +1,38 @@
+components:
+  responses:
+    InstanceSettings:
+      description: InstanceSettings Server API
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              object:
+                type: string
+                description: String representing the object's type. Objects of the same type share the same value.
+                enum:
+                  - instance_settings
+              id:
+                type: string
+              restricted_to_allowlist:
+                type: boolean
+              from_email_address:
+                type: string
+              progressive_sign_up:
+                type: boolean
+              enhanced_email_deliverability:
+                type: boolean
+
+    InstanceRestrictions:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/InstanceSettings.yml#/components/schemas/InstanceRestrictions"
+
+    OrganizationSettings:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/InstanceSettings.yml#/components/schemas/OrganizationSettings"

@@ -1,0 +1,30 @@
+components:
+  schemas:
+    RedirectURL:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          enum:
+            - redirect_url
+        id:
+          type: string
+        url:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+      required:
+        - object
+        - id
+        - url
+        - created_at
+        - updated_at

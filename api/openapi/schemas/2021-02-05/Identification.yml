@@ -1,0 +1,62 @@
+components:
+  schemas:
+    PhoneNumber:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - phone_number
+        phone_number:
+          type: string
+        reserved_for_second_factor:
+          type: boolean
+        default_second_factor:
+          type: boolean
+        verification:
+          nullable: true
+          oneOf:
+            - $ref: "Verification.yml#/components/schemas/OTP"
+            - $ref: "Verification.yml#/components/schemas/Admin"
+        linked_to:
+          type: array
+          items:
+            $ref: "#/components/schemas/IdentificationLink"
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation
+      required:
+        - object
+        - phone_number
+        - verification
+        - linked_to
+        - created_at
+        - updated_at
+
+    IdentificationLink:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum:
+            - oauth_google
+            - oauth_mock
+            - saml
+        id:
+          type: string
+      required:
+        - type
+        - id

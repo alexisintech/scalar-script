@@ -1,0 +1,92 @@
+components:
+  schemas:
+    WellKnown.Assetlinks:
+      type: array
+      additionalProperties: false
+      items:
+        type: object
+        properties:
+          relation:
+            type: array
+            items:
+              type: string
+              enum:
+                - delegate_permission/common.handle_all_urls
+          target:
+            type: object
+            properties:
+              namespace:
+                type: string
+              package_name:
+                type: string
+              sha256_cert_fingerprints:
+                type: array
+                items:
+                  type: string
+
+    WellKnown.AASA:
+      type: object
+      additionalProperties: false
+      properties:
+        applinks:
+          type: object
+          properties:
+            apps:
+              type: array
+              items:
+                type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  appID:
+                    type: string
+                  paths:
+                    type: array
+                    items:
+                      type: string
+                      enum:
+                        - "/v1/oauth-native-callback"
+        webcredentials:
+          type: object
+          properties:
+            apps:
+              type: array
+              items:
+                type: string
+
+    WellKnown.OpenIDConfiguration:
+      type: object
+      additionalProperties: false
+      properties:
+        issuer:
+          type: string
+        jwks_uri:
+          type: string
+        authorization_endpoint:
+          type: string
+        backchannel_logout_supported:
+          type: boolean
+        frontchannel_logout_supported:
+          type: boolean
+        grant_types_supported:
+          type: array
+          items:
+            type: string
+        response_modes_supported:
+          type: array
+          items:
+            type: string
+        response_types_supported:
+          type: array
+          items:
+            type: string
+        token_endpoint:
+          type: string
+        token_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+        userinfo_endpoint:
+          type: string

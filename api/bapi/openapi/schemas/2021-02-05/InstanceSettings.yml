@@ -1,0 +1,64 @@
+components:
+  schemas:
+    InstanceRestrictions:
+      type: object
+      properties:
+        object:
+          type: string
+          description: String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - instance_restrictions
+        allowlist:
+          type: boolean
+        blocklist:
+          type: boolean
+        block_email_subaddresses:
+          type: boolean
+        ignore_dots_for_gmail_addresses:
+          type: boolean
+
+    OrganizationSettings:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          description: String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - organization_settings
+        enabled:
+          type: boolean
+        max_allowed_memberships:
+          type: integer
+        max_allowed_roles:
+          type: integer
+        max_allowed_permissions:
+          type: integer
+        creator_role:
+          type: string
+          description: The role key that a user will be assigned after creating an organization.
+        admin_delete_enabled:
+          type: boolean
+          description: The default for whether an admin can delete an organization with the Frontend API.
+        domains_enabled:
+          type: boolean
+        domains_enrollment_modes:
+          type: array
+          items:
+            type: string
+            enum:
+              - manual_invitation
+              - automatic_invitation
+              - automatic_suggestion
+        domains_default_role:
+          type: string
+          description: The role key that it will be used in order to create an organization invitation or suggestion.
+      required:
+        - object
+        - enabled
+        - max_allowed_memberships
+        - creator_role
+        - admin_delete_enabled
+        - domains_enabled
+        - domains_enrollment_modes
+        - domains_default_role

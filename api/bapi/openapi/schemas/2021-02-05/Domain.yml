@@ -1,0 +1,74 @@
+components:
+  schemas:
+    Domain:
+      type: object
+      properties:
+        object:
+          type: string
+          enum:
+            - domain
+        id:
+          type: string
+        name:
+          type: string
+        is_satellite:
+          type: boolean
+        frontend_api_url:
+          type: string
+        accounts_portal_url:
+          type: string
+          nullable: true
+          description: >
+            Null for satellite domains.
+        proxy_url:
+          type: string
+          nullable: true
+        development_origin:
+          type: string
+        cname_targets:
+          type: array
+          items:
+            $ref: "#/components/schemas/CNameTarget"
+          nullable: true
+      required:
+        - object
+        - id
+        - name
+        - is_satellite
+        - frontend_api_url
+        - development_origin
+
+    Domains:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Domain"
+        total_count:
+          type: integer
+          format: int64
+          description: >
+            Total number of domains
+      required:
+        - data
+        - total_count
+
+    CNameTarget:
+      type: object
+      additionalProperties: false
+      properties:
+        host:
+          type: string
+        value:
+          type: string
+        required:
+          description: >
+            Denotes whether this CNAME target is required to be set in order
+            for the domain to be considered deployed.
+          type: boolean
+      required:
+        - host
+        - value
+        - required

@@ -1,0 +1,15 @@
+components:
+  responses:
+    Domains:
+      description: A list of domains
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Domain.yml#/components/schemas/Domains"
+
+    Domain:
+      description: A domain
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Domain.yml#/components/schemas/Domain"

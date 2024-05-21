@@ -1,0 +1,27 @@
+components:
+  schemas:
+    Token:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - token
+        jwt:
+          type: string
+          description: >
+            String representing the encoded jwt value.
+      required:
+        - object
+        - jwt
+
+  responses:
+    Token:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Token"

@@ -1,0 +1,42 @@
+components:
+  schemas:
+    SignInToken:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          enum:
+            - sign_in_token
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - accepted
+            - revoked
+        user_id:
+          type: string
+        token:
+          type: string
+        url:
+          type: string
+          nullable: true
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+      required:
+        - object
+        - id
+        - user_id
+        - status
+        - created_at
+        - updated_at

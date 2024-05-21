@@ -1,0 +1,38 @@
+components:
+  schemas:
+    AllowlistIdentifier:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - allowlist_identifier
+        id:
+          type: string
+        invitation_id:
+          type: string
+        identifier:
+          type: string
+          description: >
+            An email address or a phone number.
+        identifier_type:
+          type: string
+          enum:
+            - email_address
+            - phone_number
+            - web3_wallet
+        instance_id:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.

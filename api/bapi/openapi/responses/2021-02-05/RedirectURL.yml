@@ -1,0 +1,17 @@
+components:
+  responses:
+    RedirectURL:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/RedirectURL.yml#/components/schemas/RedirectURL"
+
+    RedirectURL.List:
+      description: List of Redirect URLs
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../../schemas/2021-02-05/RedirectURL.yml#/components/schemas/RedirectURL"

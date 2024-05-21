@@ -1,0 +1,66 @@
+components:
+  schemas:
+    ExternalAccountWithVerification:
+      type: object
+      additionalProperties: true
+      properties:
+        object:
+          type: string
+          description: String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - external_account
+            - facebook_account
+            - google_account
+        id:
+          type: string
+        provider:
+          type: string
+        provider_user_id:
+          description: The unique ID of the user in the external provider's system
+          type: string
+        approved_scopes:
+          type: string
+        email_address:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        avatar_url:
+          type: string
+          deprecated: true
+        image_url:
+          type: string
+          nullable: true
+        username:
+          type: string
+          nullable: true
+        public_metadata:
+          type: object
+        label:
+          type: string
+          nullable: true
+        verification:
+          type: object
+          nullable: true
+          oneOf:
+            - $ref: "./Verification.yml#/components/schemas/Oauth"
+            - $ref: "./Verification.yml#/components/schemas/GoogleOneTap"
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation
+      required:
+        - object
+        - id
+        - approved_scopes
+        - email_address
+        - public_metadata
+        - created_at
+        - updated_at

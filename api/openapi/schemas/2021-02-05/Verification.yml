@@ -1,0 +1,242 @@
+components:
+  schemas:
+    Password:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum:
+            - unverified
+            - verified
+        strategy:
+          type: string
+          enum:
+            - password
+        attempts:
+          type: integer
+        expire_at:
+          type: integer
+          nullable: true
+      required:
+        - status
+        - strategy
+        - attempts
+
+    OTP:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum:
+            - unverified
+            - verified
+            - failed
+            - expired
+        strategy:
+          type: string
+          enum:
+            - phone_code
+            - email_code
+            - reset_password_email_code
+        attempts:
+          type: integer
+        expire_at:
+          type: integer
+      required:
+        - status
+        - attempts
+        - strategy
+        - expire_at
+
+    Oauth:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum:
+            - unverified
+            - verified
+            - failed
+            - expired
+            - transferable
+        strategy:
+          type: string
+          enum:
+            - oauth_google
+            - oauth_mock
+        external_verification_redirect_url:
+          type: string
+        error:
+          type: object
+          nullable: true
+          oneOf:
+            - $ref: "./Error.yml#/components/schemas/ClerkError"
+        expire_at:
+          type: integer
+        attempts:
+          type: integer
+          nullable: true
+      required:
+        - status
+        - strategy
+        - expire_at
+
+    SAML:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum:
+            - unverified
+            - verified
+            - failed
+            - expired
+            - transferable
+        strategy:
+          type: string
+          enum:
+            - saml
+        external_verification_redirect_url:
+          nullable: true
+          type: string
+        error:
+          nullable: true
+          type: object
+          oneOf:
+            - $ref: "./Error.yml#/components/schemas/ClerkError"
+        expire_at:
+          type: integer
+        attempts:
+          type: integer
+          nullable: true
+      required:
+        - status
+        - strategy
+        - external_verification_redirect_url
+        - expire_at
+
+    Admin:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum:
+            - verified
+        strategy:
+          type: string
+          enum:
+            - admin
+        attempts:
+          type: integer
+          nullable: true
+        expire_at:
+          type: integer
+          nullable: true
+      required:
+        - status
+        - strategy
+
+    Web3Signature:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum:
+            - verified
+        strategy:
+          type: string
+          enum:
+            - web3_metamask_signature
+        nonce:
+          type: string
+          enum:
+            - nonce
+        attempts:
+          type: integer
+          nullable: true
+        expire_at:
+          type: integer
+          nullable: true
+      required:
+        - status
+        - strategy
+        - nonce
+
+    Passkey:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum:
+            - verified
+        strategy:
+          type: string
+          enum:
+            - passkey
+        nonce:
+          type: string
+          enum:
+            - nonce
+        attempts:
+          type: integer
+          nullable: true
+        expire_at:
+          type: integer
+          nullable: true
+      required:
+        - status
+        - strategy
+
+    Ticket:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum:
+            - unverified
+            - verified
+            - expired
+        strategy:
+          type: string
+          enum:
+            - ticket
+        attempts:
+          type: integer
+          nullable: true
+        expire_at:
+          type: integer
+          nullable: true
+      required:
+        - status
+        - strategy
+
+    GoogleOneTap:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum:
+            - unverified
+            - verified
+        strategy:
+          type: string
+          enum:
+            - google_one_tap
+        expire_at:
+          type: integer
+          nullable: true
+        attempts:
+          type: integer
+          nullable: true
+      required:
+        - status
+        - strategy

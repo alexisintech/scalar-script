@@ -1,0 +1,75 @@
+components:
+  schemas:
+    Template:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - template
+        instance_id:
+          nullable: true
+          type: string
+          description: the id of the instance the template belongs to
+        resource_type:
+          type: string
+          description: whether this is a system (default) or user overridden) template
+        template_type:
+          type: string
+          description: whether this is an email or SMS template
+        name:
+          type: string
+          description: user-friendly name of the template
+        slug:
+          type: string
+          description: machine-friendly name of the template
+        position:
+          type: integer
+          description: position with the listing of templates
+        can_revert:
+          type: boolean
+          description: whether this template can be reverted to the corresponding system default
+        can_delete:
+          type: boolean
+          description: whether this template can be deleted
+        subject:
+          type: string
+          description: email subject
+          nullable: true
+        markup:
+          type: string
+          description: the editor markup used to generate the body of the template
+        body:
+          type: string
+          description: the template body before variable interpolation
+        available_variables:
+          type: array
+          description: list of variables that are available for use in the template body
+          items:
+            type: string
+        required_variables:
+          type: array
+          description: list of variables that must be contained in the template body
+          items:
+            type: string
+        from_email_name:
+          type: string
+        reply_to_email_name:
+          type: string
+        delivered_by_clerk:
+          type: boolean
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.

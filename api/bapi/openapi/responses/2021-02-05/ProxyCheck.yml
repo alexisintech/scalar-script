@@ -1,0 +1,8 @@
+components:
+  responses:
+    ProxyCheck:
+      description: Health check information about a domain's proxy configuration validation attempt.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/ProxyCheck.yml#/components/schemas/ProxyCheck"

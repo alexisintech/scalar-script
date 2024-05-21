@@ -1,0 +1,18 @@
+components:
+  schemas:
+    BackupCode:
+      type: object
+      additionalProperties: true
+      properties:
+        object:
+          type: string
+        id:
+          type: string
+        codes:
+          type: array
+          items:
+            type: string
+      required:
+        - object
+        - id
+        - codes

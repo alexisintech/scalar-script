@@ -1,0 +1,26 @@
+components:
+  responses:
+    Client:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client"
+
+    Client.List:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client"
+
+    Client.Verify.400Error:
+      description: Failed
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: "../../../../openapi/schemas/2021-02-05/Error.yml#/components/schemas/FormInvalid"
+            - $ref: "../../../../openapi/schemas/2021-02-05/Error.yml#/components/schemas/CookieInvalid"

@@ -1,0 +1,89 @@
+components:
+  schemas:
+    Generic:
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+      required:
+        - type
+        - message
+
+    ClerkKeyInvalid:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum:
+            - clerk_key_invalid
+        message:
+          type: string
+      required:
+        - type
+        - message
+
+    CookieInvalid:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum:
+            - cookie_invalid
+        message:
+          type: string
+      required:
+        - type
+        - message
+
+    FormInvalid:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum:
+            - form_invalid
+        message:
+          type: string
+        errors:
+          nullable: true
+          type: array
+          items:
+            $ref: "#/components/schemas/Generic"
+      required:
+        - type
+        - message
+
+    ClerkError:
+      type: object
+      properties:
+        message:
+          type: string
+        long_message:
+          type: string
+        code:
+          type: string
+        meta:
+          type: object
+        clerk_trace_id:
+          type: string
+      required:
+        - message
+        - long_message
+        - code
+
+    ClerkErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClerkError"
+        meta:
+          type: object
+      required:
+        - errors

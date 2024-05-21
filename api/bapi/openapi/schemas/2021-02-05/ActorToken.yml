@@ -1,0 +1,46 @@
+components:
+  schemas:
+    ActorToken:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          enum:
+            - actor_token
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - accepted
+            - revoked
+        user_id:
+          type: string
+        actor:
+          type: object
+        token:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+      required:
+        - object
+        - id
+        - user_id
+        - actor
+        - status
+        - created_at
+        - updated_at

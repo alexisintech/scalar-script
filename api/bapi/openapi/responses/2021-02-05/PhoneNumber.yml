@@ -1,0 +1,8 @@
+components:
+  responses:
+    PhoneNumber:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../openapi/schemas/2021-02-05/PhoneNumber.yml#/components/schemas/PhoneNumber"

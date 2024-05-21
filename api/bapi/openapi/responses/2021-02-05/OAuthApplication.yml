@@ -1,0 +1,23 @@
+components:
+  responses:
+    OAuthApplications:
+      description: A list of OAuth applications
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/OAuthApplication.yml#/components/schemas/OAuthApplications"
+
+    OAuthApplication:
+      description: An OAuth application
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/OAuthApplication.yml#/components/schemas/OAuthApplication"
+
+
+    OAuthApplicationWithSecret:
+      description: An OAuth application with client secret
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/OAuthApplication.yml#/components/schemas/OAuthApplicationWithSecret"

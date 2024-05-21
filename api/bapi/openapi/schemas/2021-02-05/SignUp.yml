@@ -1,0 +1,82 @@
+components:
+  schemas:
+    SignUp:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          enum:
+            - sign_up_attempt
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - missing_requirements
+            - complete
+            - abandoned
+        required_fields:
+          type: array
+          items:
+            type: string
+        optional_fields:
+          type: array
+          items:
+            type: string
+        missing_fields:
+          type: array
+          items:
+            type: string
+        unverified_fields:
+          type: array
+          items:
+            type: string
+        verifications:
+          type: object
+        username:
+          type: string
+          nullable: true
+        email_address:
+          type: string
+          nullable: true
+        phone_number:
+          type: string
+          nullable: true
+        web3_wallet:
+          type: string
+          nullable: true
+        password_enabled:
+          type: boolean
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        unsafe_metadata:
+          type: object
+        public_metadata:
+          type: object
+        custom_action:
+          type: boolean
+        external_id:
+          type: string
+          nullable: true
+        created_session_id:
+          type: string
+          nullable: true
+        created_user_id:
+          type: string
+          nullable: true
+        abandon_at:
+          type: integer
+        external_account:
+          type: object
+      required:
+        - object
+        - id
+        - status
+        - password_enabled
+        - custom_action
+        - abandon_at

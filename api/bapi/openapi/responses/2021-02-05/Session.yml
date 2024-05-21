@@ -1,0 +1,17 @@
+components:
+  responses:
+    Session:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Session.yml#/components/schemas/Session"
+
+    Session.List:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../../schemas/2021-02-05/Session.yml#/components/schemas/Session"

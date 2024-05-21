@@ -1,0 +1,5 @@
+This directory contains OpenAPI snippets that are common between the FAPI and
+BAPI descriptions.
+
+For the FAPI and BAPI descriptions, see api/fapi/openapi and
+api/bapi/openapi folders respectively.

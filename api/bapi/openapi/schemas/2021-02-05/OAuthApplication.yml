@@ -1,0 +1,80 @@
+components:
+  schemas:
+    OAuthApplication:
+      type: object
+      properties:
+        object:
+          type: string
+          enum:
+            - oauth_application
+        id:
+          type: string
+        instance_id:
+          type: string
+        name:
+          type: string
+        client_id:
+          type: string
+        public:
+          type: boolean
+        scopes:
+          type: string
+        callback_url:
+          type: string
+        authorize_url:
+          type: string
+        token_fetch_url:
+          type: string
+        user_info_url:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+      required:
+        - object
+        - id
+        - instance_id
+        - name
+        - public
+        - client_id
+        - scopes
+        - callback_url
+        - authorize_url
+        - token_fetch_url
+        - user_info_url
+        - created_at
+        - updated_at
+
+    OAuthApplications:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/OAuthApplication"
+        total_count:
+          type: integer
+          format: int64
+          description: >
+            Total number of OAuth applications
+      required:
+        - data
+        - total_count
+
+    OAuthApplicationWithSecret:
+      allOf:
+        - $ref: '#/components/schemas/OAuthApplication'
+        - type: object
+          properties:
+            client_secret:
+              type: string
+              description: >
+                Empty if public client.

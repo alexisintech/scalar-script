@@ -1,0 +1,23 @@
+components:
+  schemas:
+    TestingToken:
+      type: object
+      properties:
+        object:
+          type: string
+          enum:
+            - testing_token
+        token:
+          type: string
+          description: The actual token. This value is meant to be passed in the `__clerk_testing_token` query parameter with requests to the Frontend API.
+          example: 1713877200-c_2J2MvPu9PnXcuhbPZNao0LOXqK9A7YrnBn0HmIWxy
+        expires_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of the token's expiration time.
+          example: 1713880800
+      required:
+        - object
+        - token
+        - expires_at

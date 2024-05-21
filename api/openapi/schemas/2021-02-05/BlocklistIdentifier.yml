@@ -1,0 +1,53 @@
+components:
+  schemas:
+    BlocklistIdentifier:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - blocklist_identifier
+        id:
+          type: string
+        identifier:
+          type: string
+          description: >
+            An email address, email domain, phone number or web3 wallet.
+        identifier_type:
+          type: string
+          enum:
+            - email_address
+            - phone_number
+            - web3_wallet
+        instance_id:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+
+    BlocklistIdentifiers:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/BlocklistIdentifier"
+        total_count:
+          type: integer
+          format: int64
+          description: >
+            Total number of blocklist identifiers
+      required:
+        - data
+        - total_count

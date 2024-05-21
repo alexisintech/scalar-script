@@ -1,0 +1,22 @@
+components:
+  responses:
+    WellKnown.Assetlinks:
+      description: Get Android asset links for universal/deep linking
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/WellKnown.yml#/components/schemas/WellKnown.Assetlinks"
+
+    WellKnown.AASA:
+      description: Get Apple AASA configuration for universal/deep linking
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/WellKnown.yml#/components/schemas/WellKnown.AASA"
+
+    WellKnown.OpenIDConfiguration:
+      description: Get a basic openid configuration payload
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/WellKnown.yml#/components/schemas/WellKnown.OpenIDConfiguration"

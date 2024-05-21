@@ -1,0 +1,18 @@
+components:
+  schemas:
+    TotalCount:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - total_count
+        total_count:
+          type: integer
+          format: int64
+      required:
+        - object
+        - total_count

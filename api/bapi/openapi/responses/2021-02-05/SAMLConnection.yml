@@ -1,0 +1,15 @@
+components:
+  responses:
+    SAMLConnections:
+      description: A list of SAML Connections
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/SAMLConnection.yml#/components/schemas/SAMLConnections"
+
+    SAMLConnection:
+      description: A SAML Connection
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/SAMLConnection.yml#/components/schemas/SAMLConnection"

@@ -1,0 +1,31 @@
+components:
+  schemas:
+    Passkey:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - passkey
+        name:
+          type: string
+        last_used_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of when the passkey was last used.
+        verification:
+          type: object
+          nullable: true
+          oneOf:
+            - $ref: "Verification.yml#/components/schemas/Passkey"
+      required:
+        - object
+        - name
+        - last_used_at
+        - verification

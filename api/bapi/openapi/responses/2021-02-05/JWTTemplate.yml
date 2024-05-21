@@ -1,0 +1,17 @@
+components:
+  responses:
+    JWTTemplate:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/JWTTemplate.yml#/components/schemas/JWTTemplate"
+
+    JWTTemplate.List:
+      description: List of JWT templates
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../../schemas/2021-02-05/JWTTemplate.yml#/components/schemas/JWTTemplate"

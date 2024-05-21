@@ -1,0 +1,47 @@
+components:
+  schemas:
+    EmailAddress:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - email_address
+        email_address:
+          type: string
+        reserved:
+          type: boolean
+        verification:
+          type: object
+          nullable: true
+          oneOf:
+            - $ref: "Verification.yml#/components/schemas/OTP"
+            - $ref: "Verification.yml#/components/schemas/Admin"
+            - $ref: "Verification.yml#/components/schemas/Oauth"
+        linked_to:
+          type: array
+          items:
+            $ref: "Identification.yml#/components/schemas/IdentificationLink"
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation
+      required:
+        - object
+        - email_address
+        - verification
+        - linked_to
+        - reserved
+        - created_at
+        - updated_at

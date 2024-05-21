@@ -1,0 +1,362 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body,
+      html {
+        font-family: "Source Sans Pro", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        padding: 0;
+        margin: 0;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        --default-color: #6c47ff;
+      }
+
+      h3 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        line-height: 2.1875rem;
+      }
+
+      a {
+        color: var(--default-color);
+      }
+
+      button {
+        cursor: pointer;
+        color: #fff;
+        background-color: var(--default-color);
+        border: 0;
+        outline: 0;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        padding: 1em 2em;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.15s ease-in-out;
+        -webkit-appearance: button;
+        margin: 0;
+      }
+
+      button:hover {
+        filter: brightness(110%);
+      }
+
+      button:active {
+        filter: brightness(90%);
+      }
+
+      button:focus {
+        -webkit-tap-highlight-color: transparent;
+        outline: none !important;
+        outline-offset: 0 !important;
+        box-shadow: 0 0 0 2px var(--default-color) !important;
+      }
+
+      .prompt {
+        width: 600px;
+        min-height: 300px;
+
+        color: #000;
+        background-color: #fff;
+
+        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 2em;
+      }
+
+      .prompt-header,
+      .prompt-message {
+        height: 240px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .prompt-message {
+        padding: 0 2em;
+        height: 260px;
+      }
+
+      .prompt-header {
+        background: linear-gradient(
+          to bottom right,
+          #00000e 0%,
+          #00000e 50%,
+          #030b27 50%,
+          #030b27 100%
+        );
+        border-radius: 2em 2em 0 0;
+      }
+
+      .prompt-header svg {
+        width: 6em;
+        height: 6em;
+      }
+
+      .button-group {
+        margin: 1em 0 2em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="prompt">
+      <div class="prompt-header">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#ffffff"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-box"
+        >
+          <path
+            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+          ></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+      </div>
+      <div class="prompt-message">
+        <div id="request-access" style="display: none">
+          <h3>Approve third-party cookies</h3>
+          <p>
+            In development and staging instances, Clerk uses third-party
+            Javascript cookies to manage user sessions. The browser you're using
+            requires us to request explicit permission to use third-party
+            cookies.
+          </p>
+          <div class="button-group">
+            <button onclick="requestAccessWithGesture()">Set up access</button>
+          </div>
+        </div>
+        <div id="failure" style="display: none">
+          <h3>Approve third-party cookies</h3>
+          <p>
+            Something went wrong. We're sorry! Please contact us at
+            <a href="mailto:support@clerk.com" title="Support"
+              >support@clerk.com</a
+            >
+            so we can help resolve.
+          </p>
+        </div>
+        <div id="retries-failure" style="display: none">
+          <h3>Oops !</h3>
+          <p>
+            Something went wrong. We're sorry! Please contact us at
+            <a href="mailto:support@clerk.com" title="Support"
+              >support@clerk.com</a
+            >
+            so we can help resolve.
+          </p>
+        </div>
+        <div id="third-party-failure" style="display: none">
+          <h3>Approve third-party cookies</h3>
+          <p>
+            Your browser is completely blocking third-party cookies, which are
+            required to use Clerk in development mode. Please allow third-party
+            cookies on this site. If you need help, please contact us at
+            <a href="mailto:support@clerk.com" title="Support"
+              >support@clerk.com</a
+            >.
+          </p>
+        </div>
+      </div>
+      <script type="text/javascript">
+        function init() {
+          // If the browser doesn't the support Storage Access API (Chrome)
+          if (typeof document.requestStorageAccess !== "function") {
+            // Test if we have cookie setting access. If not, third-party
+            // cookies are blocked and we need the developer to intervene.
+            if (!testRealAccess()) {
+              showThirdPartyCookieFailure();
+              return;
+            }
+
+            // If we already have cookie setting access, set it.
+            setCookie();
+            return;
+          }
+
+          document.hasStorageAccess().then(function (access) {
+            if (access) {
+              // If we already have storage access, we need to check whether
+              // we've lost real access before trying to set the cookie.
+
+              // It's possible to lose real access in Safari, if the developer
+              // manually deletes the first party cookies on clerk.*.lcl.dev
+              if (!testRealAccess()) {
+                setCookieInFirstPartyContext();
+              } else {
+                setCookie();
+              }
+            } else {
+              // Start by requesting storage access programatically.  Usually this won't
+              // succeed, but since browsers can implement the API differently, we should
+              // at least try.
+              document
+                .requestStorageAccess()
+                .then(function () {
+                  // We were able to get access programatically. Reload so we can see if we
+                  // receive the client cookie next time around. If we don't have it after
+                  // reload, the if(access) will return true next time.
+                  setCookie();
+                })
+                .catch(function () {
+                  // We weren't able to get access programatically, so we need to ask again
+                  // at the same time the user is clicking a button. Show a screen that asks
+                  // the user to click a button.
+                  showRequestAccess();
+                });
+            }
+          });
+        }
+        function getCookieValue(a) {
+          var b = document.cookie.match(
+            "(^|[^;]+)\\s*" + a + "\\s*=\\s*([^;]+)"
+          );
+          return b ? b.pop() : null;
+        }
+        function testRealAccess() {
+          document.cookie =
+            "__test=1;path=/;expires=Sun, 31 Dec 2023 23:59:59 GMT;SameSite=None;Secure";
+          var test = getCookieValue("__test");
+          if (test === null) {
+            return false;
+          } else {
+            document.cookie =
+              "__test=1;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;SameSite=None;Secure";
+            return true;
+          }
+        }
+        function setCookie() {
+          var currentRetries = checkRetries();
+          if (currentRetries >= 5) {
+            handleFinalFailure();
+            return;
+          }
+          var request = new XMLHttpRequest();
+          request.open("POST", "/v1/dev_browser/set_first_party_cookie", true);
+          request.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+          );
+          request.onload = function () {
+            if (this.status >= 200 && this.status < 400) {
+              window.location.reload();
+            } else {
+              showGenericFailure();
+            }
+          };
+          request.onerror = function () {
+            showGenericFailure();
+          };
+          window.setTimeout(function () {
+            request.send();
+          }, 100 * currentRetries);
+        }
+        function showRequestAccess() {
+          document.getElementById("request-access").style.display = "block";
+          window.parent.postMessage({ showFrame: true }, "*");
+        }
+        function requestAccessWithGesture() {
+          document
+            .requestStorageAccess()
+            .then(function () {
+              // We received access with the user gesture. Reload so we can see if we
+              // receive the client cookie next time around. If we don't have it after
+              // reload, the if(access) will return true next time and show a sign in.
+              window.location.reload();
+            })
+            .catch(function () {
+              // We weren't able to get access with a gesture. We're out of luck at
+              // this point - ask the developer to contact support and hope we can
+              // come up with a solution.
+              setCookieInFirstPartyContext();
+            });
+        }
+        function showGenericFailure() {
+          document.getElementById("failure").style.display = "block";
+          window.parent.postMessage({ showFrame: true }, "*");
+        }
+        function showThirdPartyCookieFailure() {
+          document.getElementById("third-party-failure").style.display =
+            "block";
+          window.parent.postMessage({ showFrame: true }, "*");
+        }
+        function showRetriesFailure() {
+          document.getElementById("retries-failure").style.display = "block";
+          window.parent.postMessage({ showFrame: true }, "*");
+        }
+        function handleFinalFailure() {
+          if (!(navigator && navigator.brave)) {
+            showRetriesFailure();
+            return;
+          }
+          // Brave browser allows setting a JS cookie but does not
+          // send it in xhr request headers.
+          navigator.brave
+            .isBrave()
+            .then(showThirdPartyCookieFailure)
+            .catch(showRetriesFailure);
+        }
+        function setCookieInFirstPartyContext() {
+          var accountsHost =
+            "accounts." + window.location.host.split(".").slice(1).join(".");
+          var current = new URL(window.location.href);
+          var redirect = new URL(
+            "https://" + accountsHost + "/initialize-development"
+          );
+          redirect.searchParams.set(
+            "redirect",
+            current.searchParams.get("redirect")
+          );
+          window.top.location.href = redirect.href;
+        }
+        function checkRetries() {
+          var accessRetries = document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("cookieRetries="));
+          var retries = accessRetries ? accessRetries.split("=")[1] : 0;
+          var date = new Date();
+          var expireTime = date.getTime() + 1000 * 30;
+          date.setTime(expireTime);
+          document.cookie =
+            "cookieRetries=" +
+            (Number(retries) + 1) +
+            ";expires=" +
+            date.toUTCString() +
+            ";SameSite=None;Secure";
+          return retries;
+        }
+        init();
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+components:
+  schemas:
+    User:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - user
+        external_id:
+          nullable: true
+          type: string
+        primary_email_address_id:
+          nullable: true
+          type: string
+        primary_phone_number_id:
+          nullable: true
+          type: string
+        primary_web3_wallet_id:
+          nullable: true
+          type: string
+        username:
+          nullable: true
+          type: string
+        first_name:
+          nullable: true
+          type: string
+        last_name:
+          nullable: true
+          type: string
+        profile_image_url:
+          type: string
+          deprecated: true
+        image_url:
+          type: string
+        has_image:
+          type: boolean
+        public_metadata:
+          type: object
+        private_metadata:
+          nullable: true
+          type: object
+        unsafe_metadata:
+          type: object
+        email_addresses:
+          type: array
+          items:
+            $ref: "EmailAddress.yml#/components/schemas/EmailAddress"
+        phone_numbers:
+          type: array
+          items:
+            $ref: "PhoneNumber.yml#/components/schemas/PhoneNumber"
+        web3_wallets:
+          type: array
+          items:
+            $ref: "Web3Wallet.yml#/components/schemas/Web3Wallet"
+        passkeys:
+          type: array
+          items:
+            $ref: "Passkey.yml#/components/schemas/Passkey"
+        password_enabled:
+          type: boolean
+        two_factor_enabled:
+          type: boolean
+        totp_enabled:
+          type: boolean
+        backup_code_enabled:
+          type: boolean
+        external_accounts:
+          type: array
+          items:
+            type: object
+        saml_accounts:
+          type: array
+          items:
+            $ref: "SAMLAccount.yml#/components/schemas/SAMLAccount"
+        last_sign_in_at:
+          type: integer
+          format: int64
+          nullable: true
+          description: >
+            Unix timestamp of last sign-in.
+        banned:
+          type: boolean
+          description: >
+            Flag to denote whether user is banned or not.
+        locked:
+          type: boolean
+          description: >
+            Flag to denote whether user is currently locked, i.e. restricted from signing in or not.
+        lockout_expires_in_seconds:
+          type: integer
+          format: int64
+          nullable: true
+          description: >
+            The number of seconds remaining until the lockout period expires for a locked user.
+            A null value for a locked user indicates that lockout never expires.
+        verification_attempts_remaining:
+          type: integer
+          format: int64
+          nullable: true
+          description: >
+            The number of verification attempts remaining until the user is locked.
+            Null if account lockout is not enabled.
+            Note: if a user is locked explicitly via the Backend API, they may still have verification attempts remaining.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        delete_self_enabled:
+          type: boolean
+          description: >
+            If enabled, user can delete themselves via FAPI.
+        create_organization_enabled:
+          type: boolean
+          description: >
+            If enabled, user can create organizations via FAPI.
+        last_active_at:
+          type: integer
+          format: int64
+          nullable: true
+          description: >
+            Unix timestamp of the latest session activity, with day precision.
+          example: 1700690400000

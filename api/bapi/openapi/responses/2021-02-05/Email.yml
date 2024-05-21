@@ -1,0 +1,8 @@
+components:
+  responses:
+    Email:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Email.yml#/components/schemas/Email"

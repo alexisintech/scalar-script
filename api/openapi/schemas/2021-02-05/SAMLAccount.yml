@@ -1,0 +1,44 @@
+components:
+  schemas:
+    SAMLAccount:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - saml_account
+        provider:
+          type: string
+        active:
+          type: boolean
+        email_address:
+          type: string
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        provider_user_id:
+          type: string
+          nullable: true
+        public_metadata:
+          type: object
+        verification:
+          type: object
+          nullable: true
+          oneOf:
+            - $ref: "Verification.yml#/components/schemas/SAML"
+            - $ref: "Verification.yml#/components/schemas/Ticket"
+      required:
+        - id
+        - object
+        - provider
+        - active
+        - email_address
+        - verification

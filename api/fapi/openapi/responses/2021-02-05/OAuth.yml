@@ -1,0 +1,16 @@
+components:
+  responses:
+    OAuth.Token:
+      description: Fetch token for OAuth2 flow
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/OAuth.yml#/components/schemas/OAuth.Token"
+
+    OAuth.UserInfo:
+      description: Get user info after successful OAuth2 flow
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/OAuth.yml#/components/schemas/OAuth.UserInfo"
+

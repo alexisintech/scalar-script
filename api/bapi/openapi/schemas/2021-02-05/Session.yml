@@ -1,0 +1,61 @@
+components:
+  schemas:
+    Session:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - session
+        id:
+          type: string
+        user_id:
+          type: string
+        client_id:
+          type: string
+        actor:
+          type: object
+          nullable: true
+        status:
+          type: string
+          enum:
+            - active
+            - revoked
+            - ended
+            - expired
+            - removed
+            - abandoned
+            - replaced
+        last_active_organization_id:
+          type: string
+          nullable: true
+        last_active_at:
+          type: integer
+        expire_at:
+          type: integer
+        abandon_at:
+          type: integer
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+      required:
+        - object
+        - id
+        - user_id
+        - client_id
+        - status
+        - last_active_at
+        - expire_at
+        - abandon_at
+        - updated_at
+        - created_at

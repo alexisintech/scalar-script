@@ -1,0 +1,60 @@
+components:
+  schemas:
+    OAuth.Token:
+      type: object
+      additionalProperties: false
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        scope:
+          type: string
+        token_type:
+          type: string
+
+    OAuth.UserInfo:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+        instance_id:
+          type: string
+        email:
+          type: string
+        email_verified:
+          type: boolean
+        family_name:
+          type: string
+        given_name:
+          type: string
+        name:
+          type: string
+        username:
+          type: string
+        picture:
+          type: string
+        user_id:
+          type: string
+        public_metadata:
+          type: object
+          nullable: true
+        private_metadata:
+          type: object
+        unsafe_metadata:
+          type: object
+      required:
+        - object
+        - instance_id
+        - email
+        - email_verified
+        - family_name
+        - given_name
+        - name
+        - username
+        - picture
+        - user_id
+        - public_metadata

@@ -1,0 +1,8 @@
+components:
+  responses:
+    DeletedObject:
+      description: Deleted Object
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/DeletedObject.yml#/components/schemas/DeletedObject"

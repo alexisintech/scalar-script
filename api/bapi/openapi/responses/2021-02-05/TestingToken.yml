@@ -1,0 +1,8 @@
+components:
+  responses:
+    TestingToken:
+      description: A Testing Token
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/TestingToken.yml#/components/schemas/TestingToken"

@@ -1,0 +1,47 @@
+components:
+  schemas:
+    Invitation:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          enum:
+            - invitation
+        id:
+          type: string
+        email_address:
+          type: string
+          format: email
+        public_metadata:
+          type: object
+        revoked:
+          type: boolean
+          example: false
+        status:
+          type: string
+          enum:
+            - pending
+            - accepted
+            - revoked
+          example: pending
+        url:
+          type: string
+          nullable: true
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+      required:
+        - object
+        - id
+        - email_address
+        - status
+        - created_at
+        - updated_at

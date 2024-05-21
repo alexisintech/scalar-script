@@ -1,0 +1,8 @@
+components:
+  responses:
+    SvixURL:
+      description: Response that contains a temporary Svix URL to access management dashboard
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Webhooks.yml#/components/schemas/SvixURL"

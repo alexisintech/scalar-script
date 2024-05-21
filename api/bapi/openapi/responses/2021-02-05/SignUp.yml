@@ -1,0 +1,8 @@
+components:
+  responses:
+    SignUp:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/SignUp.yml#/components/schemas/SignUp"

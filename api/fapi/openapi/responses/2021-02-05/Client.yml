@@ -1,0 +1,361 @@
+components:
+  responses:
+    Client.DeleteSession:
+      description: Returns the response for DELETE session object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.DeleteSession"
+
+    Client.ClientWrappedUser:
+      description: Returns the response for Session wrapped User object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedUser"
+
+    Client.ClientWrappedEmailAddress:
+      description: Returns the response for Session wrapped Email object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedEmailAddress"
+
+    Client.ClientWrappedPhoneNumber:
+      description: Returns the response for Session wrapped Email object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedPhoneNumber"
+
+    Client.ClientWrappedWeb3Wallet:
+      description: Returns the response for Session wrapped Web3 wallet object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedWeb3Wallet"
+
+    Client.ClientWrappedPasskey:
+      description: Returns the response for Session wrapped Passkey object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedPasskey"
+
+    Client.ClientWrappedExternalAccount:
+      description: Returns the response for Session wrapped Verification object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedExternalAccount"
+
+    Client.ClientWrappedTOTP:
+      description: Returns the response for Session wrapped TOTP object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedTOTP"
+
+    Client.ClientWrappedBackupCodes:
+      description: Returns the response for Session wrapped Backup code object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedBackupCodes"
+
+    Client.AccountPortal:
+      description: Returns the account portal.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.AccountPortal"
+
+    Client.Environment:
+      description: Returns the environment.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.Environment"
+
+    Client.Client:
+      description: Returns the current session object.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+            properties:
+              client:
+                type: object
+                nullable: true
+              response:
+                type: object
+                nullable: true
+                allOf:
+                  - $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.Client"
+
+    Client.Session:
+      description: Returns a Session object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Responses.Client.Session"
+
+    Client.SignIn:
+      description: Returns the sign in object, as well as the updated session object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Responses.Client.SignIn"
+
+    SignIn:
+      description: Returns the sign in object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.SignIn"
+
+    Client.SignUp:
+      description: Returns the sign up object, as well as the updated session object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Responses.Client.SignUp"
+
+    Client.ActiveSessions:
+      description: Returns an Active Sessions array.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ActiveSessions"
+
+    Server.Sessions:
+      description: Returns Sessions array.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Server.Sessions"
+
+    Server.UserEmailAddresses:
+      description: Returns UserEmailAddresses array.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Server.UserEmailAddresses"
+
+    Server.UserEmailAddress:
+      description: Returns single UserEmailAddress.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.EmailAddress"
+
+    Server.DeletedEmailAddress:
+      description: Returns single DeletedEmailAddress.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedDeletedObject"
+
+    Server.UserPhoneNumbers:
+      description: Returns UserPhoneNumbers array.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Server.UserPhoneNumbers"
+
+    Server.UserPhoneNumber:
+      description: Returns single UserPhoneNumber.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.PhoneNumber"
+
+    Client.DeletedPhoneNumber:
+      description: Returns single DeletedPhoneNumber.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedDeletedObject"
+
+    Server.UserWeb3Wallets:
+      description: Returns UserWeb3Wallets array.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Server.UserWeb3Wallets"
+
+    Server.AuthenticatedSession:
+      description: Returns an Authenticated Session.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Responses.Server.AuthenticatedSession"
+
+    Client.User:
+      description: Returns a User object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.User"
+
+    Client.DeleteUser:
+      description: Returns a Deleted User object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedDeletedObject"
+
+    Client.ClientWrappedDeletedObject:
+      description: Returns a Deleted User object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedDeletedObject"
+
+    Client.DeletedEmailAddress:
+      description: Returns a Deleted User object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedDeletedObject"
+
+    Client.DeletedPasskey:
+      description: Returns a Deleted Passkey object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedDeletedObject"
+
+    Client.ClientWrappedImage:
+      description: Returns an Image object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Responses.Client.ClientWrappedImage"
+
+    Client.ClientWrappedImages:
+      description: Returns an array of Image objects.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Responses.Client.ClientWrappedImages"
+
+    Client.ClientWrappedOrganization:
+      description: Returns the response for Client wrapped Organization object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganization"
+
+    Client.ClientWrappedOrganizationInvitation:
+      description: Returns the response for Client wrapped OrganizationInvitation object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationInvitation"
+
+    Client.ClientWrappedOrganizationInvitations:
+      description: Returns the response for Client wrapped array of OrganizationInvitation objects.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationInvitations"
+
+    Client.ClientWrappedOrganizationMembership:
+      description: Returns the response for Client wrapped OrganizationMembership object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationMembership"
+
+    Client.ClientWrappedOrganizationMemberships:
+      description: Returns the response for Client wrapped array of OrganizationMembership objects.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationMemberships"
+
+    Client.DeletedExternalAccount:
+      description: Returns a deleted external account.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedDeletedObject"
+
+    Client.DeletedTOTP:
+      description: Returns a deleted TOTP.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedDeletedObject"
+
+    Client.ClientWrappedOrganizationInvitationUserContext:
+      description: Returns the response for Client wrapped OrganizationInvitation object with user context.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationInvitationUserContext"
+
+    Client.ClientWrappedOrganizationInvitationsUserContext:
+      description: Returns the response for Client wrapped array of OrganizationInvitation objects with user context.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationInvitationsUserContext"
+
+    Client.ClientWrappedOrganizationSuggestion:
+      description: Returns the response for Client wrapped OrganizationSuggestion object with user context.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationSuggestion"
+
+    Client.ClientWrappedOrganizationSuggestions:
+      description: Returns the response for Client wrapped array of OrganizationSuggestion objects with user context.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationSuggestions"
+
+    Client.DeletedOrganizationDomain:
+      description: Returns a deleted organization domain.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedDeletedObject"
+
+    Client.ClientWrappedOrganizationDomain:
+      description: Returns the response for Client wrapped OrganizationDomain object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationDomain"
+
+    Client.ClientWrappedOrganizationDomains:
+      description: Returns the response for Client wrapped array of OrganizationDomain objects.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationDomains"
+
+    Client.ClientWrappedOrganizationMembershipRequest:
+      description: Returns the response for Client wrapped OrganizationMembershipRequest object.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationMembershipRequest"
+
+    Client.ClientWrappedOrganizationMembershipRequests:
+      description: Returns the response for Client wrapped OrganizationMembershipRequest objects.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedOrganizationMembershipRequests"
+
+    Client.ClientWrappedRoles:
+      description: Returns the response for Client wrapped Roles objects.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Client.yml#/components/schemas/Client.ClientWrappedRoles"

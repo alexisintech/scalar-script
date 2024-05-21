@@ -1,0 +1,17 @@
+components:
+  responses:
+    Template:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../openapi/schemas/2021-02-05/Template.yml#/components/schemas/Template"
+
+    Template.List:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../../../../openapi/schemas/2021-02-05/Template.yml#/components/schemas/Template"

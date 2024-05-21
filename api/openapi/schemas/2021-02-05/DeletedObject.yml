@@ -1,0 +1,17 @@
+components:
+  schemas:
+    DeletedObject:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+        id:
+          type: string
+        slug:
+          type: string
+        deleted:
+          type: boolean
+      required:
+        - object
+        - deleted

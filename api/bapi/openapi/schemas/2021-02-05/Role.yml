@@ -1,0 +1,61 @@
+components:
+  schemas:
+    Role:
+      type: object
+      properties:
+        object:
+          type: string
+          enum:
+            - role
+        id:
+          type: string
+        name:
+          type: string
+        key:
+          type: string
+        description:
+          type: string
+        is_creator_eligible:
+          type: boolean
+          description: Whether this role is eligible to be an organization creator role
+        permissions:
+          type: array
+          items:
+            $ref: "Permission.yml#/components/schemas/Permission"
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+      required:
+        - object
+        - id
+        - name
+        - key
+        - description
+        - is_creator_eligible
+        - permissions
+        - created_at
+        - updated_at
+
+    Roles:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
+        total_count:
+          type: integer
+          format: int64
+          description: >
+            Total number of roles
+      required:
+        - data
+        - total_count

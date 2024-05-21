@@ -1,0 +1,38 @@
+components:
+  schemas:
+    Web3Wallet:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - web3_wallet
+        web3_wallet:
+          type: string
+        verification:
+          type: object
+          nullable: true
+          oneOf:
+            - $ref: "Verification.yml#/components/schemas/Web3Signature"
+            - $ref: "Verification.yml#/components/schemas/Admin"
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation
+      required:
+        - object
+        - web3_wallet
+        - verification
+        - created_at
+        - updated_at

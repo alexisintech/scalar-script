@@ -1,0 +1,43 @@
+components:
+  schemas:
+    JWTTemplate:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          enum:
+            - jwt_template
+        id:
+          type: string
+        name:
+          type: string
+        claims:
+          type: object
+        lifetime:
+          type: integer
+        allowed_clock_skew:
+          type: integer
+        custom_signing_key:
+          type: boolean
+        signing_algorithm:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+      required:
+        - object
+        - id
+        - name
+        - claims
+        - lifetime
+        - allowed_clock_skew
+        - created_at
+        - updated_at

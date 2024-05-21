@@ -1,0 +1,104 @@
+components:
+  schemas:
+    SAMLConnection:
+      type: object
+      properties:
+        object:
+          type: string
+          enum:
+            - saml_connection
+        id:
+          type: string
+        name:
+          type: string
+        domain:
+          type: string
+        idp_entity_id:
+          type: string
+          nullable: true
+        idp_sso_url:
+          type: string
+          nullable: true
+        idp_certificate:
+          type: string
+          nullable: true
+        idp_metadata_url:
+          type: string
+          nullable: true
+        idp_metadata:
+          type: string
+          nullable: true
+        acs_url:
+          type: string
+        sp_entity_id:
+          type: string
+        sp_metadata_url:
+          type: string
+        attribute_mapping:
+          type: object
+          additionalProperties: false
+          properties:
+            user_id:
+              type: string
+            email_address:
+              type: string
+            first_name:
+              type: string
+            last_name:
+              type: string
+        active:
+          type: boolean
+        provider:
+          type: string
+        user_count:
+          type: integer
+        sync_user_attributes:
+          type: boolean
+        allow_subdomains:
+          type: boolean
+        allow_idp_initiated:
+          type: boolean
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+      required:
+        - object
+        - id
+        - name
+        - domain
+        - idp_entity_id
+        - idp_sso_url
+        - idp_certificate
+        - acs_url
+        - sp_entity_id
+        - sp_metadata_url
+        - active
+        - provider
+        - user_count
+        - sync_user_attributes
+        - created_at
+        - updated_at
+
+    SAMLConnections:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/SAMLConnection"
+        total_count:
+          type: integer
+          format: int64
+          description: >
+            Total number of SAML Connections
+      required:
+        - data
+        - total_count

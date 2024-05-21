@@ -1,0 +1,17 @@
+components:
+  responses:
+    AllowlistIdentifier:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../openapi/schemas/2021-02-05/AllowlistIdentifier.yml#/components/schemas/AllowlistIdentifier"
+
+    AllowlistIdentifier.List:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../../../../openapi/schemas/2021-02-05/AllowlistIdentifier.yml#/components/schemas/AllowlistIdentifier"

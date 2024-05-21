@@ -1,0 +1,8 @@
+components:
+  responses:
+    SignInToken:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/SignInToken.yml#/components/schemas/SignInToken"

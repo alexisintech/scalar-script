@@ -1,0 +1,78 @@
+components:
+  responses:
+    Generic:
+      description: Generic error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/Generic"
+
+    ResourceNotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/ClerkErrors"
+
+    AuthenticationInvalid:
+      description: Authentication invalid
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/ClerkErrors"
+
+    AuthorizationInvalid:
+      description: Authorization invalid
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/ClerkErrors"
+
+    CookieInvalid:
+      description: Cookie invalid error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/CookieInvalid"
+
+    ClerkKeyInvalid:
+      description: Clerk key error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/ClerkKeyInvalid"
+
+    FormInvalid:
+      description: Failed
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/FormInvalid"
+
+    UnprocessableEntity:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/ClerkErrors"
+
+    PaymentRequired:
+      description: Payment required
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/ClerkErrors"
+
+    ClerkErrors:
+      description: Request was not successful
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/ClerkErrors"
+
+    DeprecatedEndpoint:
+      description: The endpoint is considered deprecated and is pending removal.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Error.yml#/components/schemas/ClerkErrors"

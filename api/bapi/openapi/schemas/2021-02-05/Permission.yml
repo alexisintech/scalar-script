@@ -1,0 +1,55 @@
+components:
+  schemas:
+    Permission:
+      type: object
+      properties:
+        object:
+          type: string
+          enum:
+            - permission
+        id:
+          type: string
+        name:
+          type: string
+        key:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+      required:
+        - object
+        - id
+        - name
+        - key
+        - description
+        - type
+        - created_at
+        - updated_at
+
+    Permissions:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Permission"
+        total_count:
+          type: integer
+          format: int64
+          description: >
+            Total number of permissions
+      required:
+        - data
+        - total_count

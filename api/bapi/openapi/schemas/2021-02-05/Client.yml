@@ -1,0 +1,55 @@
+components:
+  schemas:
+    Client:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - client
+        id:
+          type: string
+          description: >
+            String representing the identifier of the session.
+        session_ids:
+          type: array
+          items:
+            type: string
+        sessions:
+          type: array
+          items:
+            $ref: "Session.yml#/components/schemas/Session"
+        sign_in_id:
+          type: string
+          nullable: true
+        sign_up_id:
+          type: string
+          nullable: true
+        last_active_session_id:
+          nullable: true
+          type: string
+          description: >
+            Last active session_id.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+      required:
+        - object
+        - id
+        - session_ids
+        - sessions
+        - sign_in_id
+        - sign_up_id
+        - last_active_session_id
+        - updated_at
+        - created_at

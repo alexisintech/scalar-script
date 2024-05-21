@@ -1,0 +1,51 @@
+components:
+  schemas:
+    Email:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          enum:
+            - email
+        id:
+          type: string
+        slug:
+          type: string
+          nullable: true
+        from_email_name:
+          type: string
+        reply_to_email_name:
+          type: string
+        email_address_id:
+          type: string
+          nullable: true
+        to_email_address:
+          type: string
+        user_id:
+          type: string
+          nullable: true
+        subject:
+          type: string
+        body:
+          type: string
+        body_plain:
+          type: string
+          nullable: true
+        status:
+          type: string
+        data:
+          type: object
+          nullable: true
+        delivered_by_clerk:
+          type: boolean
+      required:
+        - object
+        - id
+        - from_email_name
+        - email_address_id
+        - to_email_address
+        - subject
+        - body
+        - status
+        - delivered_by_clerk

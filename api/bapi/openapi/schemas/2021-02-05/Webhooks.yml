@@ -1,0 +1,10 @@
+components:
+  schemas:
+    SvixURL:
+      type: object
+      additionalProperties: false
+      properties:
+        svix_url:
+          type: string
+      required:
+        - svix_url

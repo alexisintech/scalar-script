@@ -1,0 +1,45 @@
+components:
+  schemas:
+    TOTP:
+      type: object
+      additionalProperties: true
+      properties:
+        object:
+          type: string
+        id:
+          type: string
+        secret:
+          type: string
+          nullable: true
+        uri:
+          type: string
+          nullable: true
+        verified:
+          type: boolean
+        backup_codes:
+          type: array
+          items:
+            type: string
+          nullable: true
+      required:
+        - object
+        - id
+        - secret
+        - uri
+        - verified
+    BackupCodes:
+      type: object
+      properties:
+        object:
+          type: string
+        id:
+          type: string
+        codes:
+          type: array
+          items:
+            type: string
+            description: A list of backup codes
+      required:
+        - object
+        - id
+        - codes

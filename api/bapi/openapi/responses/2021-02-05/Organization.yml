@@ -1,0 +1,50 @@
+components:
+  responses:
+    Organizations:
+      description: A list of organizations
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Organization.yml#/components/schemas/Organizations"
+
+    Organization:
+      description: An organization
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Organization.yml#/components/schemas/Organization"
+
+    OrganizationWithLogo:
+      description: An organization with a logo URL.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Organization.yml#/components/schemas/OrganizationWithLogo"
+
+    OrganizationInvitations:
+      description: A list of organization invitations
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Organization.yml#/components/schemas/OrganizationInvitations"
+
+    OrganizationInvitation:
+      description: An organization invitation
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Organization.yml#/components/schemas/OrganizationInvitation"
+
+    OrganizationMemberships:
+      description: A list of organization memberships
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Organization.yml#/components/schemas/OrganizationMemberships"
+
+    OrganizationMembership:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/2021-02-05/Organization.yml#/components/schemas/OrganizationMembership"

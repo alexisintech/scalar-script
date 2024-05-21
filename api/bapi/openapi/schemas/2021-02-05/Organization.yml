@@ -1,0 +1,210 @@
+components:
+  schemas:
+    Organization:
+      type: object
+      properties:
+        object:
+          type: string
+          enum:
+            - organization
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        members_count:
+          type: integer
+          nullable: true
+        max_allowed_memberships:
+          type: integer
+        admin_delete_enabled:
+          type: boolean
+        public_metadata:
+          type: object
+        private_metadata:
+          type: object
+        created_by:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: >
+            Unix timestamp of last update.
+      required:
+        - object
+        - id
+        - name
+        - slug
+        - max_allowed_memberships
+        - public_metadata
+        - private_metadata
+        - created_at
+        - updated_at
+
+    Organizations:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Organization"
+        total_count:
+          type: integer
+          format: int64
+          description: >
+            Total number of organizations
+      required:
+        - data
+        - total_count
+
+    OrganizationWithLogo:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Organization'
+        - type: object
+          properties:
+            logo_url:
+              type: string
+              deprecated: true
+            image_url:
+              type: string
+            has_image:
+              type: boolean
+          required:
+            - image_url
+
+    OrganizationInvitation:
+      description: An organization invitation
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - organization_invitation
+        email_address:
+          type: string
+        role:
+          type: string
+        organization_id:
+          type: string
+        status:
+          type: string
+        public_metadata:
+          type: object
+        private_metadata:
+          type: object
+        created_at:
+          type: integer
+          format: int64
+          description: Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: Unix timestamp of last update.
+
+    OrganizationInvitations:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/OrganizationInvitation"
+        total_count:
+          type: integer
+          format: int64
+          description: >
+            Total number of organization invitations
+      required:
+        - data
+        - total_count
+
+    OrganizationMembership:
+      description: Hello world
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          description: >
+            String representing the object's type. Objects of the same type share the same value.
+          enum:
+            - organization_membership
+        role:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        public_metadata:
+          type: object
+          description: Metadata saved on the organization membership, accessible from both Frontend and Backend APIs
+        private_metadata:
+          type: object
+          description: Metadata saved on the organization membership, accessible only from the Backend API
+        organization:
+          type: object
+          nullable: false
+          allOf:
+            - $ref: "#/components/schemas/Organization"
+        public_user_data:
+          type: object
+          additionalProperties: false
+          properties:
+            user_id:
+              type: string
+              nullable: false
+            first_name:
+              type: string
+              nullable: true
+            last_name:
+              type: string
+              nullable: true
+            profile_image_url:
+              type: string
+              nullable: true
+              deprecated: true
+            image_url:
+              type: string
+            has_image:
+              type: boolean
+            identifier:
+              type: string
+              nullable: true
+        created_at:
+          type: integer
+          format: int64
+          description: Unix timestamp of creation.
+        updated_at:
+          type: integer
+          format: int64
+          description: Unix timestamp of last update.
+
+    OrganizationMemberships:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/OrganizationMembership"
+        total_count:
+          type: integer
+          format: int64
+          description: >
+            Total number of organization memberships
+      required:
+        - data
+        - total_count

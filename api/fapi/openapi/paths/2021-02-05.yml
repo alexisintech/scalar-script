@@ -1,0 +1,3673 @@
+AndroidAssetLinks:
+  get:
+    summary: Get Android Asset Links
+    description: Get Android asset links for universal/deep linking
+    operationId: getAndroidAssetLinks
+    security: []
+    tags:
+      - Well Known
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/WellKnown.yml#/components/responses/WellKnown.Assetlinks"
+
+JWKS:
+  get:
+    summary: JWKS
+    description: Retrieve the JSON Web Key Set of the instance
+    operationId: GetJWKS
+    security: []
+    tags:
+      - Well Known
+    responses:
+      "200":
+        description: The JSON Web Key Set
+
+AppleAppSiteAssociation:
+  get:
+    summary: Apple AASA Configuration
+    description: Get Apple AASA configuration for universal/deep linking
+    operationId: getAppleAASAConfiguration
+    security: []
+    tags:
+      - Well Known
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/WellKnown.yml#/components/responses/WellKnown.AASA"
+
+OpenIDConfiguration:
+  get:
+    summary: Basic OpenID Configuration Payload
+    description: Get a basic openid configuration payload
+    operationId: getOpenIDConfiguration
+    security: []
+    tags:
+      - Well Known
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/WellKnown.yml#/components/responses/WellKnown.OpenIDConfiguration"
+
+OAuthAuthorize:
+  get:
+    summary: Request OAuth2 authorization
+    description: Request OAuth2 authorization. If successful, receive authorization grant via redirect.
+    operationId: requestOAuthAuthorize
+    security: []
+    tags:
+      - OAuth2 Identify Provider
+    responses:
+      "302":
+        description: "Redirect, no body."
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OAuthToken:
+  post:
+    summary: Get OAuth2 token
+    description: Get OAuth2 token in exchange for a valid authorization grant.
+    operationId: getOAuthToken
+    security: []
+    tags:
+      - OAuth2 Identify Provider
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/OAuth.yml#/components/responses/OAuth.Token"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OAuthUserinfo:
+  get:
+    summary: Get user info after OAuth2 flow
+    description: Get user info in exchange for a valid OAuth2 access token.
+    operationId: getOAuthUserInfo
+    security: []
+    tags:
+      - OAuth2 Identify Provider
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/OAuth.yml#/components/responses/OAuth.UserInfo"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+AccountPortal:
+  get:
+    summary: Get account portal
+    description: Get users account portal
+    operationId: getAccountPortal
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.AccountPortal"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+Environment:
+  get:
+    summary: Get environment
+    description:
+      Get the current environment. The environment contains information about the settings and features enabled
+      for the current instance.
+    operationId: getEnvironment
+    security:
+      - {}
+      - DevBrowser: []
+    tags:
+      - Environment
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.Environment"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  patch:
+    summary: Update environment
+    description: Update environment using request origin
+    operationId: updateEnvironment
+    security:
+      - {}
+      - DevBrowser: []
+    tags:
+      - Environment
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.Environment"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+SAMLMetadata:
+  get:
+    summary: SAML Metadata
+    description: The Service Provider's SAML metadata
+    operationId: samlMetadata
+    security:
+      - {}
+      - DevBrowser: []
+    tags:
+      - SAML
+    parameters:
+      - in: path
+        name: saml_connection_id
+        required: true
+        schema:
+          type: string
+        description: The ID of the SAML Connection
+    responses:
+      "200":
+        description: OK
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+SAMLACS:
+  post:
+    summary: SAML ACS
+    description: |
+      The SAML Assertion Consumer Service (ACS) endpoint, which processes SAML Responses by the IdP.
+    operationId: acs
+    security:
+      - {}
+      - DevBrowser: []
+    tags:
+      - SAML
+    parameters:
+      - in: path
+        name: saml_connection_id
+        required: true
+        schema:
+          type: string
+        description: The ID of the SAML Connection
+    responses:
+      "302":
+        description: OK
+      "303":
+        description: OK
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+Health:
+  get:
+    summary: "Get Health"
+    description: "Get Health"
+    security:
+      - {}
+      - DevBrowser: []
+    tags:
+      - Health
+    operationId: getHealth
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+
+ProxyHealth:
+  get:
+    summary: Get Proxy Health
+    description: |-
+      Use this endpoint to check the validity of a proxy configuration for a domain.
+      Pass the instance ID and domain ID as query parameters.
+    operationId: getProxyHealth
+    responses:
+      200:
+        description: Configuration is valid
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+      400:
+        description: Bad request
+      404:
+        description: Not found
+      503:
+        description: Configuration is invalid or service is unavailable
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                message:
+                  type: string
+
+Client:
+  get:
+    summary: "Get Current Client"
+    description: "Returns the current client that is present either in the browser cookies or authorization header."
+    tags:
+      - Client
+    operationId: getClient
+    security:
+      - {}
+      - DevBrowser: []
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.Client"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  put:
+    summary: Create New Client
+    description: Creates a new Client and sets it either in the response cookies or the response authorization header.
+    security:
+      - {}
+      - DevBrowser: []
+    tags:
+      - Client
+    operationId: putClient
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.Client"
+      "307":
+        description: "Redirect, no body."
+  post:
+    summary: Create New Client
+    description: Creates a new Client and sets it either in the response cookies or the response authorization header.
+    security:
+      - {}
+      - DevBrowser: []
+    operationId: postClient
+    tags:
+      - Client
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.Client"
+      "307":
+        description: "Redirect, no body."
+  delete:
+    summary: Delete Client's Sessions
+    description: Ends all Sessions of the Current Client
+    tags:
+      - Client
+    operationId: deleteClientSessions
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.DeleteSession"
+      "307":
+        description: "Redirect, no body."
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignIns:
+  post:
+    summary: Create a new Sign In or replace the current one.
+    description: |-
+      Creates or replaces the current Sign in object.
+      In order to authenticate a Sign in in as few requests as possible,
+      you can pass in parameters to this request that can identify and verify the Sign in.
+
+      Parameter rules:
+      If the strategy equals `phone_code`, `email_code`, `web3_[provider]_signature`, `reset_password_code` or `reset_password_phone_code` then an identifier is required.
+      If the strategy equals `email_link` then an identifier is required and optionally redirect_url can be supplied.
+      If the strategy equals `password` then both an identifier and a password is required.
+      If the strategy equals `oauth_[provider]` or `saml` then a redirect_url is required, and an action_complete_redirect_url is optional.
+      If the strategy equals `ticket` then ticket is required.
+      If the strategy equals `passkey` then no identifier is provided.
+      If the strategy equals `google_one_tap` then token is required.
+    tags:
+      - Sign Ins
+    operationId: createSignIn
+    requestBody:
+      required: false
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              strategy:
+                type: string
+                description: Strategy used to sign in.
+
+                  Can be one of `phone_code`, `email_code`, `ticket`, `web3_[provider]_signature`
+                  `reset_password_code`, `reset_password_phone_code`, `email_link`, `oauth_[provider]`
+                  `oauth_mock`, `saml`, `password`, `passkey`, `google_one_tap`
+                nullable: true
+              identifier:
+                type: string
+                description: The unique identifier of the user. This changes depending on the strategy.
+                nullable: true
+              password:
+                type: string
+                description: The password of the user. Only used with password strategy.
+                nullable: true
+              ticket:
+                type: string
+                description: Ticket to be used for signing in.
+                nullable: true
+              redirect_url:
+                type: string
+                nullable: true
+              action_complete_redirect_url:
+                type: string
+                nullable: true
+              transfer:
+                type: boolean
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignIn"
+      "307":
+        description: "Redirect, no body."
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "409":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignIn:
+  get:
+    summary: Retrieve sign-in
+    description: |-
+      Returns the sign-in with the given id.
+      The sign in is returned only if it belongs to the requesting client and is not abandoned.
+    tags:
+      - Sign Ins
+    operationId: getSignIn
+    parameters:
+      - in: path
+        name: sign_in_id
+        required: true
+        schema:
+          type: string
+        description: The id of the sign in to be retrieved.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignIn"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignInResetPassword:
+  post:
+    summary: Reset password on sign-in
+    description: |-
+      Reset password on sign-in.
+    tags:
+      - Sign Ins
+    operationId: resetPassword
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              password:
+                type: string
+              sign_out_of_other_sessions:
+                type: boolean
+                nullable: true
+    parameters:
+      - in: path
+        name: sign_in_id
+        required: true
+        schema:
+          type: string
+        description: The id of the sign in to be retrieved.
+    responses:
+      200:
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignIn"
+      400:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      422:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignInPrepareFirstFactor:
+  post:
+    summary: Prepare First Factor Verification
+    description: |-
+      Prepares the verification object for the identified Sign in.
+      This step authenticates that the user is who they say they are.
+      Depending on the strategy, this request request will do something different.
+
+      Parameter actions:
+      If the strategy equals email_code then this request will send an email with an OTP code.
+      If the strategy equals phone_code then this request will send an SMS with an OTP code.
+      If the strategy equals oauth_[provider] then this request generate a URL that the User needs to visit in order to authenticate.
+      If the strategy equals passkey then this request will begin the passkey registration flow.
+
+      Parameter rules:
+      If the strategy equals `oauth_[provider]` then a redirect_url is required, and an action_complete_redirect_url is optional.
+    tags:
+      - Sign Ins
+    operationId: prepareSignInFactorOne
+    parameters:
+      - in: path
+        name: sign_in_id
+        required: true
+        schema:
+          type: string
+        description: The id of the sign in to be retrieved.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              strategy:
+                type: string
+                description: |-
+                  The strategy to be prepared for first factor authentication.
+
+                  Can be one of the following `email_code`, `email_link`, `phone_code`
+                  `web3_metamask_signature`, `reset_password_phone_code`
+                  `reset_password_email_code`, `oauth_[provider]`, `saml`, `passkey`
+              email_address_id:
+                type: string
+                description: Used with the `email_code`, `reset_password_email_code`  and `email_link` strategies.
+                nullable: true
+              phone_number_id:
+                type: string
+                description: Used with the `phone_code` and `reset_password_phone_code` strategies.
+                nullable: true
+              web3_wallet_id:
+                type: string
+                description: Used with the `web3_metamask_signature` strategy.
+                nullable: true
+              passkey_id:
+                type: string
+                description: Used with the `passkey` strategy.
+                nullable: true
+              redirect_url:
+                type: string
+                description: Used with `oauth_[provider]` and `saml` strategy.
+                nullable: true
+              action_complete_redirect_url:
+                type: string
+                description: Used with `oauth_[provider]` and `saml` strategy.
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignIn"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignInAttemptFirstFactor:
+  post:
+    summary: Attempt First Factor Verification
+    description: |-
+      Attempt the first verification.
+      Requires the sign in attempt to be identified, and the first factor verification to be prepared, unless you're using a password.
+
+      Parameter rules:
+      If the strategy equals `email_code` or `phone_code` then a code is required.
+      If the strategy equals `password` then a password is required.
+    tags:
+      - Sign Ins
+    operationId: attemptSignInFactorOne
+    parameters:
+      - in: path
+        name: sign_in_id
+        required: true
+        schema:
+          type: string
+        description: The id of the sign in.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              strategy:
+                type: string
+                description: |-
+                  The strategy to be used for first factor authentication.
+
+                  Can be one of the following `email_code`, `email_link`,
+                  `password`, `phone_code`, `web3_metamask_signature`,
+                  `reset_password_phone_code`, `reset_password_email_code`,
+                  `passkey`, `google_one_tap`
+              code:
+                type: string
+                description: The code the was sent to the email. Used with the `email_code`, `phone_code` and `email_link` strategies.
+                nullable: true
+              password:
+                type: string
+                description: Used with the `password` and `reset_password_phone_code` strategies.
+                nullable: true
+              signature:
+                type: string
+                description: Used with the `web3_metamask_signature` strategy.
+                nullable: true
+              redirect_url:
+                type: string
+                description: Used with `oauth_[provider]` and `saml` strategies.
+                nullable: true
+              action_complete_redirect_url:
+                type: string
+                description: Used with `oauth_[provider]` and `saml` strategies.
+                nullable: true
+              ticket:
+                type: string
+                deprecated: true
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignIn"
+      "307":
+        description: "Redirect, no body."
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignInPrepareSecondFactor:
+  post:
+    summary: Prepare Second Factor Verification
+    description: |-
+      Prepare the second verification.
+      Requires the sign in attempt `status` to be equal to `needs_second_factor`.
+    tags:
+      - Sign Ins
+    operationId: prepareSignInFactorTwo
+    parameters:
+      - in: path
+        name: sign_in_id
+        required: true
+        schema:
+          type: string
+        description: The id of the sign in.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              strategy:
+                type: string
+                description: The strategy to be prepared for second factor authentication.
+                nullable: true
+                enum:
+                  - phone_code
+              phone_number_id:
+                type: string
+                description: Used with the `phone_code` strategy.
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignIn"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignInAttemptSecondFactor:
+  post:
+    summary: Attempt Second Factor Verification
+    description: |-
+      Attempt the second verification.
+      Requires the sign in attempt `status` to be equal to `needs_second_factor`, and for the preparation step to have been called.
+    tags:
+      - Sign Ins
+    operationId: attemptSignInFactorTwo
+    parameters:
+      - in: path
+        name: sign_in_id
+        required: true
+        schema:
+          type: string
+        description: The id of the sign in.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              strategy:
+                type: string
+                description: The strategy to be attempted for first factor authentication.
+                enum:
+                  - phone_code
+                  - totp
+                  - backup_code
+              code:
+                type: string
+                description: Used with the `phone_code`, `totp` and `backup_code` strategies.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignIn"
+      "307":
+        description: "Redirect, no body."
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignUps:
+  post:
+    summary: Create Sign-up
+    description: |-
+      Creates or replaces the sign-up on the current Client object.
+    tags:
+      - Sign Ups
+    operationId: createSignUps
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              transfer:
+                type: boolean
+                nullable: true
+              password:
+                type: string
+                nullable: true
+              first_name:
+                type: string
+                nullable: true
+              last_name:
+                type: string
+                nullable: true
+              username:
+                type: string
+                nullable: true
+              email_address:
+                type: string
+                nullable: true
+              phone_number:
+                type: string
+                nullable: true
+              email_address_or_phone_number:
+                type: string
+                nullable: true
+              unsafe_metadata:
+                type: string
+                nullable: true
+              strategy:
+                type: string
+                nullable: true
+                enum:
+                  - email_code
+                  - email_link
+                  - phone_code
+                  - web3_metamask_signature
+                  - saml
+                  - oauth
+                  - ticket
+                  - oauth_google
+                  - oauth_mock
+                  - google_one_tap
+              action_complete_redirect_url:
+                type: string
+                nullable: true
+              redirect_url:
+                type: string
+                nullable: true
+              ticket:
+                type: string
+                nullable: true
+              web3_wallet:
+                type: string
+                nullable: true
+              captcha_token:
+                type: string
+                nullable: true
+              captcha_error:
+                type: string
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignUp"
+      "307":
+        description: "Redirect, no body."
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "409":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignUp:
+  get:
+    summary: Get Sign-up
+    description: |-
+      Returns the sign-up by ID. Must be associated with the current Client object.
+    tags:
+      - Sign Ups
+    operationId: getSignUps
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        description: The sign up unique identifier.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignUp"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  patch:
+    summary: Update Sign-up
+    description: |-
+      Updates the sign-up object specified by id,
+      with the supplied parameters.
+    tags:
+      - Sign Ups
+    operationId: updateSignUps
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        description: The sign up unique identifier.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignUp"
+      "307":
+        description: "Redirect, no body."
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignUpPrepareVerification:
+  post:
+    summary: Prepare Sign-up Identification Verification
+    description: |
+      Prepares verification for the sign-up specified by `{id}`.
+
+      Depending on the given strategy, the API will prepare the verification for the current sign-up.
+      In particular,
+      * for `email_code`, the API will send a verification email to the email address currently load up in the sign-up
+      * for `phone_code`, the API will send a verification SMS to the phone number currently load up in the sign-up
+    tags:
+      - Sign Ups
+    operationId: prepareSignUpsVerification
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              strategy:
+                type: string
+                description: |-
+                  The verification strategy
+
+                  - email_code
+                  - email_link
+                  - phone_code
+                  - web3_metamask_signature
+                  - saml
+                  - oauth
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        description: The sign up unique identifier.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignUp"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSignUpAttemptVerification:
+  post:
+    summary: Attempt Sign-up Identification Verification
+    description: |-
+      Attempts to verify the identification that corresponds to the given strategy using the given verification code.
+    tags:
+      - Sign Ups
+    operationId: attemptSignUpsVerification
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              strategy:
+                type: string
+                description: The verification strategy
+                enum:
+                  - email_code
+                  - email_link
+                  - phone_code
+                  - web3_metamask_signature
+                  - google_one_tap
+              code:
+                nullable: true
+                type: string
+                description: The verification code
+              signature:
+                nullable: true
+                type: string
+                description: The verification web3 signature
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        description: The sign up unique identifier.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.SignUp"
+      "307":
+        description: "Redirect, no body."
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "409":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSync:
+  get:
+    summary: Sync clients across multiple domains
+    description: Start the syncing process between a satellite and primary domain.
+    operationId: syncClient
+    parameters:
+      - in: query
+        name: link_domain
+        schema:
+          type: string
+        description: The satellite domain which should be synced with its primary.
+      - in: query
+        name: redirect_url
+        schema:
+          type: string
+        description: The URL to redirect to after the syncing process has been completed.
+    responses:
+      307:
+        description: Redirect
+      403:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      422:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientLink:
+  get:
+    summary: Link clients across multiple domains
+    description: Complete a syncing process between a satellite and primary domains by linking their clients.
+    operationId: linkClient
+    parameters:
+      - in: query
+        name: __clerk_token
+        schema:
+          type: string
+        description: The token generated from a sync request.
+    responses:
+      307:
+        description: Redirect
+      400:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      403:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      422:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientHandshake:
+  get:
+    summary: Generate and returns a new session token for a given client.
+    description: When the authentication status cannot be determined from the current session token, we initiate a handshake to refresh the token and send it back to the application. Called in server environments.
+    tags:
+      - Client
+    operationId: handshakeClient
+    parameters:
+      - in: query
+        name: redirect_url
+        schema:
+          type: string
+        description: The URL to redirect back to after the handshake
+    responses:
+      307:
+        description: Redirect
+      400:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      403:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      422:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      500:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+DevBrowser:
+  post:
+    summary: "Create a Dev Browser token"
+    description: |-
+      Generate an Dev Browser API token.
+
+      This is used to authenticate Development Instances with the `DevBrowser` scheme.
+      It must be set before making any request to a dev instance, even for endpoints that are public.
+    operationId: createDevBrowser
+    security: []
+    tags:
+      - DevBrowser
+    responses:
+      "200":
+        description: A DevBrowser was created.
+      "400":
+        description: The hostname is invalid.
+
+DevBrowserSetFirstPartyCookie:
+  post:
+    summary: "Post Dev Broswer init set cookie"
+    description: "post dev_browser/set_first_party_cookie"
+    operationId: postDevBrowserInitSetCookie
+    responses:
+      "200":
+        description: A cookie for the dev browser was set.
+
+DevBrowserInit:
+  get:
+    summary: "Initialize dev browser for development and staging instances"
+    description: "get dev_browser/init"
+    operationId: getDevBrowserInit
+    responses:
+      "200":
+        description: Successfully initialized the dev browser.
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "500":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OAuthCallback:
+  get:
+    operationId: getOauthCallback
+    summary: "OAuth Callback"
+    description: |-
+      The endpoint where the oauth providers redirect to after a successful authentication attempt.
+    tags:
+      - OAuth2 Callbacks
+    parameters:
+      - in: query
+        name: scope
+        schema:
+          type: string
+        description: returned scopes from oauth provider.
+      - in: query
+        name: code
+        schema:
+          type: string
+        description: returned exchange code from oauth provider.
+      - in: query
+        name: state
+        schema:
+          type: string
+        description: returned state from oauth provider.
+    responses:
+      "200":
+        description: "[AuthV2] HTML-based redirection in dev instances"
+      "303":
+        description: "Redirect"
+      "299":
+        description: "FAKE SUCCESS"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  post:
+    operationId: postOauthCallback
+    summary: OAuth Post Callback
+    description:
+      Converts a POST to a GET, because if it's a POST coming from an external account.
+      This is necessary because some providers (e.g. Apple) issue a POST instead of a GET request.
+    tags:
+      - OAuth2 Callbacks
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: true
+            properties:
+              code:
+                description: returned exchange code from oauth provider.
+                type: string
+              state:
+                description: returned state from oauth provider.
+                type: string
+    responses:
+      "303":
+        description: "Redirect to GET /v1/oauth_callback with same parameters"
+
+ClearSiteData:
+  get:
+    summary: "Set the Clear-Site-Data header"
+    description: "Clear browsing data (cookies, storage, cache) associated with the requesting website"
+    operationId: clearSiteData
+    responses:
+      "200":
+        description: The Clear-Site-Data header was set with wildcard value.
+
+# authenticated requests
+ClientSession:
+  get:
+    operationId: getSession
+    summary: Get Session
+    description: Returns the session with the given id
+    tags:
+      - Sessions
+    parameters:
+      - in: path
+        name: session_id
+        required: true
+        schema:
+          type: string
+        description: the user session id.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.Session"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSessionTouch:
+  post:
+    operationId: touchSession
+    summary: Touch session
+    description: Specify the active session for the client.
+    tags:
+      - Sessions
+    parameters:
+      - in: path
+        name: session_id
+        required: true
+        schema:
+          type: string
+        description: the user session id.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.Session"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSessionEnd:
+  post:
+    operationId: endSession
+    summary: End Session
+    description: Marks the given session as ended.
+    tags:
+      - Sessions
+    parameters:
+      - in: path
+        name: session_id
+        required: true
+        schema:
+          type: string
+        description: the user session id.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.Session"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSessionRemove:
+  post:
+    operationId: removeSession
+    summary: Remove Session
+    description: Delete the the given session.
+    tags:
+      - Sessions
+    parameters:
+      - in: path
+        name: session_id
+        required: true
+        schema:
+          type: string
+        description: the user session id.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.Session"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeSessionsActive:
+  get:
+    summary: Get Active Sessions
+    description: Returns all active session for user, including activity information.
+    tags:
+      - Active Sessions
+    operationId: getSessions
+    parameters:
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ActiveSessions"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeSessionRevoke:
+  post:
+    summary: Revoke given session
+    description: Revokes given session.
+    tags:
+      - Active Sessions
+    operationId: revokeSession
+    parameters:
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+      - in: path
+        name: session_id
+        required: true
+        schema:
+          type: string
+        description: The session id to be revoked.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.Session"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSessionTokens:
+  post:
+    summary: Create Session Token
+    description: Create a session jwt for the authenticated requested user.
+    operationId: createSessionToken
+    tags:
+      - Sessions
+    parameters:
+      - in: path
+        name: session_id
+        required: true
+        schema:
+          type: string
+        description: the user session id.
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jwt:
+                  type: string
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+ClientSessionTokensTemplate:
+  post:
+    summary: Create Session Token With JWT Template
+    description: Create a session jwt for the authenticated requested user.
+    operationId: createSessionTokenWithTemplate
+    tags:
+      - Sessions
+    parameters:
+      - in: path
+        name: session_id
+        required: true
+        schema:
+          type: string
+        description: the user session id.
+      - in: path
+        name: template_name
+        required: true
+        schema:
+          type: string
+        description: the template name
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jwt:
+                  type: string
+
+MeSessions:
+  get:
+    summary: Get Sessions
+    description: Get all the sessions of the current user.
+    tags:
+      - Active Sessions
+    operationId: getUsersSessions
+    parameters:
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Server.Sessions"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeEmailAddresses:
+  get:
+    operationId: getEmailAddresses
+    summary: Get Email Addresses
+    description: Retrieve all the email addresses associated with the current user.
+    tags:
+      - Email Addresses
+    parameters:
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Server.UserEmailAddresses"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  post:
+    summary: Create Email Address
+    description: Add an email address to the current user.
+      The address then needs to be verified using the `prepare_verification` and `attempt_verification` endpoints.
+    operationId: createEmailAddresses
+    tags:
+      - Email Addresses
+    parameters:
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              email_address:
+                type: string
+                description: The email address to be added to the user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedEmailAddress"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeEmailAddressAttemptVerification:
+  post:
+    operationId: verifyEmailAddress
+    description: Attempt to verify an email address that was previously created.
+    summary: Attempt Email Address Verification
+    tags:
+      - Email Addresses
+    parameters:
+      - in: path
+        required: true
+        name: email_id
+        schema:
+          type: string
+        description: The email_id.
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: The code that was previously sent to the email address.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedEmailAddress"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeEmailAddressPrepareVerification:
+  post:
+    description:
+      Depending on the given strategy, the API will prepare the verification for the email address.
+
+      In particular,
+      * for `email_code`, the API will send a verification email to the address containing a code.
+      * for `email_link`, the API will send a verification email to the address containg a link to the verification attempt endpoint.
+    summary: Prepare Email Address Verification
+    tags:
+      - Email Addresses
+    operationId: sendVerificationEmail
+    parameters:
+      - in: path
+        name: email_id
+        required: true
+        schema:
+          type: string
+        description: The email_id.
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              strategy:
+                type: string
+                description: The strategy to be prepared for email verification.
+                enum:
+                  - email_code
+                  - email_link
+              redirect_url:
+                type: string
+                description: Used with the `email_link` strategy.
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedEmailAddress"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeEmailAddress:
+  get:
+    summary: Get Email Address
+    description: Retrieve an email address by id.
+    tags:
+      - Email Addresses
+    operationId: getEmailAddress
+    parameters:
+      - in: path
+        name: email_id
+        required: true
+        schema:
+          type: string
+        description: The email_id.
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedEmailAddress"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  delete:
+    summary: Delete email address
+    description: Delete an email address by id.
+    tags:
+      - Email Addresses
+    operationId: DeleteEmailAddress
+    parameters:
+      - in: path
+        name: email_id
+        required: true
+        schema:
+          type: string
+        description: The email_id.
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedDeletedObject"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MePhoneNumbers:
+  get:
+    summary: Get Phone Numbers
+    description: Retrieve all phone numbers associated with the current user.
+    operationId: getPhoneNumbers
+    tags:
+      - Phone Numbers
+    parameters:
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Server.UserPhoneNumbers"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  post:
+    summary: Create Phone Number
+    description: Add a phone number to the current user.
+      The phone number then needs to be verified using the sms `prepare_verification` and `attempt_verification` endpoints.
+    tags:
+      - Phone Numbers
+    operationId: postPhoneNumbers
+    parameters:
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              phone_number:
+                type: string
+                description: The phone number to be added to the user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedPhoneNumber"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MePhoneNumberAttemptVerification:
+  post:
+    summary: Attempt Phone Number Verification
+    description: Attempt to verify the given phone number using the code sent during the `prepare_verification` step.
+    tags:
+      - Phone Numbers
+    operationId: verifyPhoneNumber
+    parameters:
+      - in: path
+        required: true
+        name: phone_number_id
+        schema:
+          type: string
+        description: The phone_number_id.
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: Strategy used to verify the phone number.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedPhoneNumber"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MePhoneNumberPrepareVerification:
+  post:
+    summary: Prepare Phone Number Verification
+    description: Sends an sms to the phone number with the code needed to verify it.
+    tags:
+      - Phone Numbers
+    operationId: sendVerificationSMS
+    parameters:
+      - in: path
+        required: true
+        name: phone_number_id
+        schema:
+          type: string
+        description: The phone_number_id.
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              strategy:
+                type: string
+                description: Strategy used to verify the phone number.
+                enum:
+                  - phone_code
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedPhoneNumber"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MePhoneNumber:
+  get:
+    summary: Retrieve Phone Number
+    description: Retrieve all properties for the given phone number.
+    tags:
+      - Phone Numbers
+    operationId: ReadPhoneNumber
+    parameters:
+      - in: path
+        required: true
+        name: phone_number_id
+        schema:
+          type: string
+        description: The phone_number_id.
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedPhoneNumber"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  patch:
+    summary: Update Phone Number
+    description: Update the properties of the given phone number.
+    tags:
+      - Phone Numbers
+    operationId: UpdatePhoneNumber
+    parameters:
+      - in: path
+        required: true
+        name: phone_number_id
+        schema:
+          type: string
+        description: The phone_number_id.
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              reserved_for_second_factor:
+                type: boolean
+                description: Whether the phone number is reserved for multi-factor authentication.
+                nullable: true
+              default_second_factor:
+                type: boolean
+                description: Marks the phone number as the default that will be used in multi-factor authentication.
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedPhoneNumber"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  delete:
+    summary: Delete Phone Number
+    description: Deletes the phone number with the given id.
+    operationId: DeletePhoneNumber
+    tags:
+      - Phone Numbers
+    parameters:
+      - in: path
+        required: true
+        name: phone_number_id
+        schema:
+          type: string
+        description: The phone_number_id.
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.DeletedPhoneNumber"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeWeb3Wallets:
+  get:
+    summary: Get All Web3 Wallets
+    description: Retrieve all web3 wallets associated with the current user.
+    operationId: getWeb3Wallets
+    tags:
+      - Web3 Wallets
+    parameters:
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Server.UserWeb3Wallets"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  post:
+    summary: Create Web3 Wallet
+    description: Create a new web3 wallet.
+    operationId: postWeb3Wallets
+    tags:
+      - Web3 Wallets
+    parameters:
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              strategy:
+                type: string
+                description: The strategy used to connect the external account.
+                nullable: true
+              redirect_url:
+                type: string
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedWeb3Wallet"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeWeb3Wallet:
+  get:
+    summary: Get Web3 Wallet
+    description: Retrieve all properties associated a specific web3 wallet.
+    operationId: readWeb3Wallet
+    tags:
+      - Web3 Wallets
+    parameters:
+      - in: path
+        required: true
+        name: web3_wallet_id
+        schema:
+          type: string
+        description: The web3 wallet ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedWeb3Wallet"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  delete:
+    summary: Delete Web3 Wallet
+    description: Delete a web3 wallet by id.
+    operationId: deleteWeb3Wallet
+    tags:
+      - Web3 Wallets
+    parameters:
+      - in: path
+        required: true
+        name: web3_wallet_id
+        schema:
+          type: string
+        description: The web3 wallet ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.DeletedPhoneNumber"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeWeb3WalletPrepareVerification:
+  post:
+    summary: Prepare Web3 Wallet Verification
+    description: Prepares verification for the provided web3 wallet.
+    operationId: prepareWeb3WalletVerification
+    tags:
+      - Web3 Wallets
+    parameters:
+      - in: path
+        name: web3_wallet_id
+        required: true
+        schema:
+          type: string
+        description: The web3 wallet ID
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedWeb3Wallet"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeWeb3WalletAttemptVerification:
+  post:
+    summary: Attempt Web3 Wallet Verification
+    description: Attempts to verify the provided web3 wallet.
+    operationId: attemptWeb3WalletVerification
+    tags:
+      - Web3 Wallets
+    parameters:
+      - in: path
+        required: true
+        name: web3_wallet_id
+        schema:
+          type: string
+        description: The web3 wallet ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedWeb3Wallet"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MePasskeys:
+  post:
+    summary: Create Passkey
+    description: Create a new passkey.
+    operationId: postPasskey
+    tags:
+      - Passkeys
+    parameters:
+      - in: query
+        name: _clerk_session_id
+        schema:
+          type: string
+        description: The session_id associated with the requesting user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedPasskey"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MePasskey:
+  get:
+    summary: Get Passkey
+    description: Retrieve all properties associated a specific passkey.
+    operationId: readPasskey
+    tags:
+      - Passkeys
+    parameters:
+      - in: path
+        required: true
+        name: passkey_id
+        schema:
+          type: string
+        description: The passkey identification ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedPasskey"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  patch:
+    summary: Update Passkey
+    description: Update properties of a specific passkey.
+    operationId: patchPasskey
+    tags:
+      - Passkeys
+    parameters:
+      - in: path
+        required: true
+        name: passkey_id
+        schema:
+          type: string
+        description: The passkey identification ID.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              name:
+                type: string
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedPasskey"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  delete:
+    summary: Delete Passkey
+    description: Delete a passkey by id.
+    operationId: deletePasskey
+    tags:
+      - Passkeys
+    parameters:
+      - in: path
+        required: true
+        name: passkey_id
+        schema:
+          type: string
+        description: The passkey identification ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.DeletedPasskey"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MePasskeyAttemptVerification:
+  post:
+    summary: Attempt Passkey Verification
+    description: Attempts to verify the provided passkey.
+    operationId: attemptPasskeyVerification
+    tags:
+      - Passkeys
+    parameters:
+      - in: path
+        required: true
+        name: passkey_id
+        schema:
+          type: string
+        description: The passkey identification ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedPasskey"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeExternalAccounts:
+  post:
+    summary: Connect OAuth Accounts
+    description: Connect a new External Account from the OAuth providers enabled.
+    tags:
+      - External Accounts
+    operationId: postOAuthAccounts
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              strategy:
+                type: string
+              redirect_url:
+                type: string
+              action_complete_redirect_url:
+                type: string
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedExternalAccount"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "500":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeExternalAccountReauthorize:
+  patch:
+    summary: Reauthorize External Account
+    operationId: reauthorizeExternalAccount
+    description: Reauthorize an external account by ID.
+    tags:
+      - External Accounts
+    parameters:
+      - name: external_account_id
+        in: path
+        description: External account ID
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              additional_scope:
+                type: array
+                items:
+                  type: string
+              redirect_url:
+                type: string
+              action_complete_redirect_url:
+                type: string
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedExternalAccount"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeExternalAccount:
+  delete:
+    summary: Delete External Account
+    operationId: deleteExternalAccount
+    description: Delete an exteral account by ID.
+    tags:
+      - External Accounts
+    parameters:
+      - name: external_account_id
+        in: path
+        description: External account ID
+        required: true
+        schema:
+          type: string
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.DeletedExternalAccount"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeTOTP:
+  post:
+    summary: Create TOTP
+    description:
+      Initializes TOTP by generating a new secret. This then needs to be added to an authenticator app and verified.
+      A user can have only one TOTP secret and this endpoint will return an error if it is already present.
+    tags:
+      - TOTP
+    operationId: postTOTP
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedTOTP"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "500":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  delete:
+    summary: Delete TOTP
+    description: Deletes the current TOTP secret. This will invalidate all authenticators that where previously added.
+    tags:
+      - TOTP
+    operationId: deleteTOTP
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.DeletedTOTP"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "500":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeTOTPAttemptVerification:
+  post:
+    summary: Attempt TOTP Verification
+    description: Attempts to verify the TOTP secret previously created using a code from an authenticator.
+    tags:
+      - TOTP
+    operationId: verifyTOTP
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              code:
+                type: string
+                nullable: false
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedTOTP"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "500":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeBackupCodes:
+  post:
+    summary: Create Backup Codes
+    description:
+      Create two factor authentication backup codes for the current user.
+
+      A two factor authenitcation method must be enabled for the environment. Otherwise
+      the endpoint will return an error.
+    tags:
+      - Backup Codes
+    operationId: createBackupCodes
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedBackupCodes"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "500":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+Me:
+  get:
+    summary: Get User
+    description: Returns all attributes of the current user.
+    tags:
+      - User
+    operationId: getUser
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedUser"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  patch:
+    summary: Update User
+    description: Update the current user with the given attributes.
+    tags:
+      - User
+    operationId: patchUser
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              username:
+                nullable: true
+                type: string
+              first_name:
+                nullable: true
+                type: string
+              last_name:
+                nullable: true
+                type: string
+              primary_email_address_id:
+                type: string
+                nullable: true
+              primary_phone_number_id:
+                nullable: true
+                type: string
+              primary_web3_wallet_id:
+                nullable: true
+                type: string
+              unsafe_metadata:
+                nullable: true
+                type: string
+                description: A stringified JSON containing the unsafe medata of the current user.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedUser"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  delete:
+    summary: Delete User
+    description: Delete the current user.
+    tags:
+      - User
+    operationId: deleteUser
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedDeletedObject"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "500":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeTokens:
+  post:
+    description: create a jwt for the requested user.
+    operationId: createServiceToken
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Token.yml#/components/responses/Token"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeProfileImage:
+  post:
+    summary: Update Profile Image
+    description: Update the current user's profile image.
+    tags:
+      - User
+    operationId: updateProfileImage
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+        application/octet-stream:
+          schema:
+            format: base64
+    responses:
+      200:
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedImage"
+      400:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      401:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      422:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  delete:
+    summary: Delete Profile Image
+    description: Remove the current user's profile image.
+    operationId: deleteProfileImage
+    tags:
+      - User
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedDeletedObject"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeChangePassword:
+  post:
+    summary: Update Password
+    description: Update the current user's password.
+    operationId: changePassword
+    tags:
+      - User
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              current_password:
+                type: string
+                nullable: true
+              new_password:
+                type: string
+              sign_out_of_other_sessions:
+                type: boolean
+                nullable: true
+    responses:
+      200:
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedUser"
+      400:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      422:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeRemovePassword:
+  post:
+    summary: Delete Password
+    description: Removes the current user's password.
+    operationId: removePassword
+    tags:
+      - User
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              current_password:
+                type: string
+    responses:
+      200:
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedUser"
+      400:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      422:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeOrganizationMemberships:
+  get:
+    summary: Get Organization Memberships
+    description: Get a list of the organization memberships of the current user.
+    operationId: getOrganizationMemberships
+    tags:
+      - Organizations Memberships
+    parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationMemberships"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeOrganizationMembership:
+  delete:
+    summary: Delete Organization Membership
+    description: Delete the membership of the given organization.
+    operationId: deleteOrganizationMemberships
+    tags:
+      - Organizations Memberships
+    parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization for which the membership will be deleted
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedDeletedObject"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeOrganizationInvitations:
+  get:
+    summary: Get Current User's Organization Invitations
+    description: Get a list of the organization invitations of the current user.
+    operationId: getUsersOrganizationInvitations
+    tags:
+      - Organizations Memberships
+    parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationInvitationsUserContext"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeOrganizationInvitationAccept:
+  post:
+    summary: Accept Organization invitation
+    description: Accept an organization invitation for the current user.
+    operationId: acceptOrganizationInvitation
+    tags:
+      - Organizations Memberships
+    parameters:
+      - in: path
+        name: invitation_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization invitation to accept
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationInvitationUserContext"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeOrganizationSuggestions:
+  get:
+    summary: Get Organization Suggestions
+    description: Get a list of the organization suggestions of the current user.
+    operationId: getOrganizationSuggestions
+    tags:
+      - Organizations Memberships
+    parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+      - in: query
+        name: offset
+        schema:
+          type: integer
+      - in: query
+        name: status
+        schema:
+          type: string
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationSuggestions"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+MeOrganizationSuggestionAccept:
+  post:
+    summary: Accept Organization Suggestion
+    description: Accept an organization suggestion for the current user.
+    operationId: acceptOrganizationSuggestion
+    tags:
+      - Organizations Memberships
+    parameters:
+      - in: path
+        name: suggestion_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization suggestion to accept
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationSuggestion"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+Organizations:
+  post:
+    summary: Create Organization
+    description: Create an organization and add the current user as admin.
+    operationId: createOrganization
+    tags:
+      - Organization
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              name:
+                type: string
+                description: The organization name
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganization"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+Organization:
+  get:
+    summary: Get Organization
+    description: |-
+      Retrieve all properties of an organization that the current user is member of.
+    tags:
+      - Organization
+    operationId: getOrganization
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganization"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  patch:
+    summary: Update Organization
+    description: |-
+      Update the given properties of an organization.
+
+      The current user must be an admin in the organization.
+    operationId: updateOrganization
+    tags:
+      - Organization
+    parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization to update
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              name:
+                type: string
+                description: The organization name
+                nullable: true
+              slug:
+                type: string
+                description: The organization slug
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganization"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  delete:
+    summary: Delete Organization
+    description: |-
+      Delete the given organization.
+
+      The current user must be an admin in the organization.
+    operationId: deleteOrganization
+    tags:
+      - Organization
+    parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization to delete
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedDeletedObject"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationLogo:
+  put:
+    summary: Update Organization Logo
+    description: |-
+      Update the organization logo.
+
+      The current user must be an admin in the organization.
+    operationId: updateOrganizationLogo
+    tags:
+      - Organization
+    parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization.
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+        application/octet-stream:
+          schema:
+            format: base64
+    responses:
+      200:
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganization"
+      400:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      401:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      403:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      404:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      413:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      422:
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  delete:
+    summary: Delete Organization Logo
+    description: |-
+      Delete the organization logo.
+
+      The current user must be an admin in the organization.
+    operationId: deleteOrganizationLogo
+    tags:
+      - Organization
+    parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedDeletedObject"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationInvitations:
+  post:
+    summary: Create Organization Invitation
+    description: |-
+      Create an invitation for a user to join an organization.
+
+      The current user must have permissions to manage the members of the organization.
+    operationId: createOrganizationInvitations
+    tags:
+      - Invitations
+    parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization for which the invitation will be created.
+      - in: query
+        name: user_id
+        schema:
+          type: string
+          nullable: true
+      - in: query
+        name: role
+        schema:
+          type: string
+          nullable: true
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              email_address:
+                type: string
+                description: The email address the invitation will be sent to.
+                nullable: false
+              role:
+                type: string
+                description:
+                  The role that will be assigned to the user after joining.
+
+                  This can be one of the predefined roles (`admin`, `basic_member`) or a custom role.
+                nullable: false
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationInvitation"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+  get:
+    summary: Get All Organization Invitations
+    description: |-
+      Retrieve all invitations for an organization.
+
+      The current user must have permissions to manage the members of the organization.
+    operationId: getOrganizationInvitations
+    tags:
+      - Invitations
+    parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization for which the invitation will be retrieved.
+      - in: query
+        required: false
+        name: limit
+        schema:
+          type: number
+      - in: query
+        required: false
+        name: offset
+        schema:
+          type: number
+      - in: query
+        name: status
+        required: false
+        schema:
+          type: string
+          enum:
+            - pending
+            - accepted
+            - revoked
+            - invalid
+            - completed
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationInvitations"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationInvitationsBulk:
+  post:
+    summary: Bulk Create Organization Invitations
+    description: |-
+      Create an invitation for a user to join an organization.
+
+      The current user must have permissions to manage the members of the organization.
+    operationId: bulkCreateOrganizationInvitations
+    tags:
+      - Invitations
+    parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization for which the invitations will be created.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              email_addresses:
+                type: array
+                description: An array of email addresses the invitations will be sent to.
+                nullable: false
+                items:
+                  type: string
+              role:
+                type: string
+                description:
+                  The role that will be assigned to the user after joining.
+
+                  This can be one of the predefined roles (`admin`, `basic_member`) or a custom role.
+                nullable: false
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationInvitations"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationInvitationsPending:
+  get:
+    summary: Get All Pending Organization Invitations
+    deprecated: true
+    description: |-
+      Get a list of pending invitations for an organization.
+
+      This endpoint is deprecated. Instead use the `/v1/organizations/{organization_id}/invitations`
+      with a query parameter of `status=pending`.
+    operationId: getAllPendingOrganizationInvitations
+    tags:
+      - Invitations
+    parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization for which the invitations will be retrieved.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationInvitations"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationInvitationRevoke:
+  post:
+    summary: Revoke Pending Organization Invitation
+    description: |-
+      Revoke a pending organization invitation.
+
+      The current user must have permissions to manage the members of the organization.
+    operationId: revokePendingOrganizationInvitation
+    tags:
+      - Invitations
+    parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        description: The id of the organization for which the invitations will be retrieved.
+      - in: path
+        name: invitation_id
+        required: true
+        schema:
+          type: string
+        description: The id of the invitation to revoke.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationInvitation"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationMemberships:
+  post:
+    summary: Create Organization Membership
+    description: |-
+      Create a new organization membership.
+
+      The current user must have permissions to manage the members of the organization.
+    tags:
+      - Members
+    operationId: CreateOrganizationMembership
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: query
+        name: user_id
+        required: false
+        schema:
+          type: string
+          nullable: true
+        description: The user id to be added as a member.
+      - in: query
+        name: role
+        required: false
+        schema:
+          type: string
+          nullable: true
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              email_address:
+                type: string
+                description: The email address the invitation will be sent to.
+                nullable: true
+              role:
+                type: string
+                description:
+                  The role that will be assigned to the user after joining.
+
+                  This can be one of the predefined roles (`admin`, `basic_member`) or a custom role defined.
+                nullable: true
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationMembership"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  get:
+    summary: Get All Organization Members
+    description: |-
+      Retrieve all members of an organization.
+
+      The current user must have permissions to manage the members of the organization.
+    operationId: ListOrganizationMemberships
+    tags:
+      - Members
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: query
+        required: false
+        name: limit
+        schema:
+          type: number
+      - in: query
+        required: false
+        name: offset
+        schema:
+          type: number
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationMemberships"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationMembership:
+  patch:
+    summary: Update Organization Membership
+    description:
+      Update the attributes of a organization membership for a specific user.
+
+      The current user must have permissions to manage the members of the organization.
+    tags:
+      - Members
+    operationId: UpdateOrganizationMembership
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: path
+        required: true
+        name: user_id
+        schema:
+          type: string
+        description: The member ID.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              role:
+                type: string
+                description:
+                  The role that new role that will be assigned to the member.
+
+                  This can be one of the predefined roles (`admin`, `basic_member`) or a custom role defined.
+                nullable: false
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationMembership"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  delete:
+    summary: Remove Organization Member
+    description: |-
+      Remove a member from an organization.
+
+      The current user must have permissions to manage the members of the organization.
+    operationId: removeOrganizationMember
+    tags:
+      - Members
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: path
+        required: true
+        name: user_id
+        schema:
+          type: string
+        description: The member ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationMembership"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationDomains:
+  post:
+    summary: Create Organization Domain
+    description: |-
+      Create a new organization domain.
+
+      The current user must have permissions to manage the domains of the organization.
+    tags:
+      - Domains
+    operationId: CreateOrganizationDomain
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              name:
+                type: string
+                description: The name of the new domain
+                nullable: false
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationDomain"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  get:
+    summary: Get All Organization Domains
+    description: |-
+      Retrieves a list of all the domains in an organization
+
+      The current user must have permissions to manage the domains of the organization.
+    tags:
+      - Domains
+    operationId: ListOrganizationDomains
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: query
+        required: false
+        name: limit
+        schema:
+          type: number
+      - in: query
+        required: false
+        name: offset
+        schema:
+          type: number
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationDomains"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationDomain:
+  get:
+    summary: Get Organization Domain
+    description: |-
+      Retrieve all properties for a domain of an organization.
+
+      The current user must have permissions to manage the domains of the organization.
+    tags:
+      - Domains
+    operationId: GetOrganizationDomain
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              name:
+                type: string
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: path
+        required: true
+        name: domain_id
+        schema:
+          type: string
+        description: The domains ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationDomain"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+  delete:
+    summary: Delete Organization Domain
+    description: |-
+      Remove a domain from an organization.
+
+      The current user must have permissions to manage the domains of the organization.
+    tags:
+      - Domains
+    operationId: deleteOrganizationDomain
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: path
+        required: true
+        name: domain_id
+        schema:
+          type: string
+        description: The domain ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.DeletedOrganizationDomain"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationDomainUpdateEnrollmentMode:
+  post:
+    summary: Update Organization Enrollment Mode
+    description: |-
+      Update the enrollment mode for an organization domain.
+
+      This can be either `automatic_invitation` or `automatic_suggestion`.
+
+      The current user must have permissions to manage the domains of the organization.
+    tags:
+      - Domains
+    operationId: UpdateOrganizationDomainEnrollmentMode
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              enrollment_mode:
+                type: string
+                nullable: false
+              delete_pending:
+                type: boolean
+                nullable: true
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: path
+        required: true
+        name: domain_id
+        schema:
+          type: string
+        description: The domain ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationDomain"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationDomainPrepareAffiliationVerification:
+  post:
+    summary: Prepare Organization Domain Affiliation Verification
+    description: |-
+      Prepares affiliation verification for an organization domain.
+
+      The current user must have permissions to manage the domains of the organization.
+    tags:
+      - Domains
+    operationId: prepareOrganizationDomainVerification
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: path
+        required: true
+        name: domain_id
+        schema:
+          type: string
+        description: The domain ID.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              affiliation_email_address:
+                type: string
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationDomain"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationDomainsAttemptAffiliationVerification:
+  post:
+    summary: Attempt Organization Domain Affiliation Verification
+    description: |-
+      Attempts affiliation verification for organization domain
+
+      The current user must have permissions to manage the domains of the organization.
+    tags:
+      - Domains
+    operationId: attemptOrganizationDomainVerification
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: path
+        required: true
+        name: domain_id
+        schema:
+          type: string
+        description: The domain ID.
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              code:
+                type: string
+                description: The code that was sent to the email address.
+                nullable: false
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationDomain"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationMembershipRequests:
+  get:
+    summary: Get Organization Membership Requests
+    description: |-
+      Retrieve a list of all membership requests of an organization.
+
+      The current user must have permissions to manage the members of the organization.
+    tags:
+      - Membership Requests
+    operationId: listOrganizationMembershipRequests
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: query
+        required: false
+        name: limit
+        schema:
+          type: number
+      - in: query
+        required: false
+        name: offset
+        schema:
+          type: number
+      - in: query
+        required: false
+        name: status
+        schema:
+          type: string
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationMembershipRequests"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationMembershipRequestAccept:
+  post:
+    summary: Accept Organization Membership Request
+    description: |-
+      Accepts an organization membership request.
+
+      The current user must have permissions to manage the members of the organization.
+    tags:
+      - Membership Requests
+    operationId: acceptOrganizationMembershipRequest
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: path
+        required: true
+        name: request_id
+        schema:
+          type: string
+        description: The request ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationMembershipRequest"
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationMembershipRequestReject:
+  post:
+    summary: Reject Organization Membership Request
+    description: |-
+      Rejects an organization membership request
+
+      The current user must have permissions to manage the members of the organization.
+    tags:
+      - Membership Requests
+    operationId: rejectOrganizationMembershipRequest
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: path
+        required: true
+        name: request_id
+        schema:
+          type: string
+        description: The request ID.
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedOrganizationMembershipRequest"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "422":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+OrganizationRoles:
+  get:
+    summary: Get Organization Roles
+    description: Retrieve a list of all roles of an organization.
+    tags:
+      - Roles
+    operationId: ListOrganizationRoles
+    parameters:
+      - in: path
+        required: true
+        name: organization_id
+        schema:
+          type: string
+        description: The organization ID.
+      - in: query
+        required: false
+        name: limit
+        schema:
+          type: number
+      - in: query
+        required: false
+        name: offset
+        schema:
+          type: number
+    responses:
+      "200":
+        $ref: "../responses/2021-02-05/Client.yml#/components/responses/Client.ClientWrappedRoles"
+      "401":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "403":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+TicketsAccept:
+  get:
+    summary: Accept ticket
+    description: Accept a ticket and redirects to the appropriate location along with the ticket
+    operationId: acceptTicket
+    tags:
+      - Sign Ins
+    parameters:
+      - in: query
+        name: ticket
+        required: true
+        schema:
+          type: string
+        description: The JWT with verification information
+    responses:
+      "302":
+        description: Redirect
+      "303":
+        description: Redirect
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "404":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+
+Verify:
+  get:
+    summary: Attempt Email Link Verification
+    description: |-
+      Attempt to verify a verification with email_link strategy.
+    operationId: verify
+    tags:
+      - Sign Ins
+    parameters:
+      - in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        description: The JWT with verification information
+    responses:
+      "200":
+        description: OK
+      "400":
+        $ref: "../../../openapi/responses/2021-02-05/Error.yml#/components/responses/ClerkErrors"
+      "303":
+        description: Redirect

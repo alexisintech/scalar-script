@@ -1,0 +1,35 @@
+components:
+  schemas:
+    ProxyCheck:
+      type: object
+      additionalProperties: false
+      properties:
+        object:
+          type: string
+          enum:
+            - proxy_check
+        id:
+          type: string
+        domain_id:
+          type: string
+        last_run_at:
+          type: integer
+        proxy_url:
+          type: string
+        successful:
+          type: boolean
+        created_at:
+          type: integer
+        updated_at:
+          type: integer
+      required:
+        - object
+        - id
+        - domain_id
+        - last_run_at
+        - proxy_url
+        - successful
+        - created_at
+        - updated_at
+
+
